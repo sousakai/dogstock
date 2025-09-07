@@ -2,8 +2,18 @@
 
 Repositório do projeto de Gerenciamento de Estoque desenvolvido para a disciplina de Banco de Dados II, na Universidade Cidade de São Paulo (UNICID). 
 
-**Estado atual:** roda apenas localmente, focado no teste de conexão com o banco de dados remoto.
+**Estado atual:** roda apenas localmente, focado no teste de conexão, leitura e escrita com o banco de dados remoto.
 
+**Equipe de desenvolvimento:**
+|Nome |Atuação |
+|----------------------|-------------|
+|[Kayke Gonçalves de Sousa](https://github.com/sousakai) |Backend |
+|Ryahn Paulo Sobral Jesus|Backend |
+|[Stenio Lucas da Silva Lima](https://github.com/Steniol) |Backend |
+|[Bruno Vinicius Chaga de Medeiros Costa](https://github.com/Brunera98)|Frontend |
+|[Kauã Lourenço da Silva](https://github.com/KauaLS)|Front |
+|[Luiz Henrique](https://github.com/luizynhoo)| Frontend|
+|[Nina Areal Cezario](https://github.com/ninaareal)| Dados e BI|
 ---
 
 ### Como rodar:
@@ -19,4 +29,16 @@ Com tudo preparado, execute o comando:
 para hostear a API localmente.
 
 Importante mencionar que o acesso deve ser feito ao "link" localhost, se acessar direto pelo arquivo HTML, o teste será mal sucedido.
+
+### Tecnologias Empregadas:
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" height="40" width="40 "/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" height="40" width="40 "/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original-wordmark.svg" height="40" width="40"/>
+          
+
+---
+
+
+          
+          
+
 
