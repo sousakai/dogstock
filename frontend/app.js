@@ -39,7 +39,7 @@ async function carregarCategorias() {
   lista.innerHTML = "<li>Carregando...</li>";
 
   try {
-    const res = await fetch("/categorias"); // CORRIGIDO
+    const res = await fetch("/categorias"); // router da api backend
     const data = await res.json();
     console.log("Retorno da API:", data);
 
@@ -58,8 +58,34 @@ async function carregarCategorias() {
   }
 }
 
+// FUNÇÃO PARA CONSULTAR OS PRODUTOS - TABELA PRODUTOS
+async function carregarProdutos() {
+  const lista = document.getElementById("listaProdutos");
+  lista.innerHTML = "<li>Carregando...</li>";
+
+  try {
+    const res = await fetch("/produtos"); // router da api backend
+    const data = await res.json();
+    console.log("Retorno da API:", data);
+
+    const categorias = Array.isArray(data) ? data : Object.values(data);
+
+    lista.innerHTML = "";
+
+    categorias.forEach(cat => {
+      const li = document.createElement("li");
+      li.textContent = `${cat.id} - ${cat.nome} - ${cat.medida} - ${cat.qtd_disponivel} - ${cat.qtd_minima} - ${cat.categoria_id} - ${cat.status}`;
+      lista.appendChild(li);
+    });
+  } catch (err) {
+    lista.innerHTML = `<li>Erro ao carregar Produtos: ${err}</li>`;
+    console.error(err);
+  }
+}
+
 // Roda as duas funções ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   carregarCategorias();
   testarConexao();
+  carregarProdutos();
 });
