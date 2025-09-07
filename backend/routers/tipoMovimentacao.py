@@ -14,7 +14,7 @@ def create_db_session(env_type: str):
 @router.get("/tipomovimentacao")
 
 
-def listar_pagamentos():
+def listar_tipoMovimentacao():
     SessionLocal, ENV_TYPE = create_db_session("leitura")
     db = SessionLocal()
     try:

@@ -12,14 +12,15 @@ def create_db_session(env_type: str):
     return SessionLocal, ENV_TYPE
 
 @router.get("/fornecedores")
-def listar_movimentacoes():
+
+def listar_fornecedores():
     SessionLocal, ENV_TYPE = create_db_session("leitura")
     db = SessionLocal()
     try:
         result = db.execute(text("SELECT * FROM fornecedores ORDER BY id")).fetchall() 
         return [
             {
-                "id": row.id,
+                "id": row.id, #o nome definido nas aspas é o nome final que vai ser encontrado pelo JS, independentemente do nome da tabela.
                 "nome": row.nome, 
                 "contato": row.contato, 
                 "email": row.email,
@@ -28,6 +29,6 @@ def listar_movimentacoes():
             } for row in result
         ]
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao buscar categorias: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar fornecedores: {str(e)}")
     finally:
         db.close()

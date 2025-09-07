@@ -19,7 +19,7 @@ def listar_movimentacoes():
         result = db.execute(text("SELECT * FROM movimentacoes ORDER BY id")).fetchall() 
         return [
             {
-                "id": row.id,
+                "id": row.id, #o nome definido nas aspas é o nome final que vai ser encontrado pelo JS, independentemente do nome da tabela.
                 "produto_id": row.produto_id, 
                 "quantidade": row.quantidade, 
                 "data": row.data,
@@ -31,6 +31,6 @@ def listar_movimentacoes():
             } for row in result
         ]
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao buscar categorias: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar movimentações: {str(e)}")
     finally:
         db.close()

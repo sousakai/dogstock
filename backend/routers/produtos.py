@@ -19,7 +19,7 @@ def listar_produtos():
     db = SessionLocal()
     try:
         result = db.execute(text("SELECT * FROM produtos ORDER BY id")).fetchall()
-        return [{"id": row.id, 
+        return [{"id": row.id,  #o nome definido nas aspas é o nome final que vai ser encontrado pelo JS, independentemente do nome da tabela.
                  "nome": row.nome, 
                  "medida": row.medida, 
                  "qtd_disponivel": row.qtd_disponivel,
@@ -28,7 +28,7 @@ def listar_produtos():
                  "status": row.status
                  } for row in result]
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro ao buscar categorias: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro ao buscar produtos: {str(e)}")
     finally:
         db.close()
 

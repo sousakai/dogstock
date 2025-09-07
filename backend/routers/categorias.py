@@ -19,7 +19,8 @@ def listar_categorias():
     db = SessionLocal()
     try:
         result = db.execute(text("SELECT id, descricao FROM categoria ORDER BY descricao")).fetchall()
-        return [{"id": row.id, "descricao": row.descricao} for row in result]
+        return [{"id": row.id, #o nome definido nas aspas é o nome final que vai ser encontrado pelo JS, independentemente do nome da tabela.
+                 "descricao": row.descricao} for row in result]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao buscar categorias: {str(e)}")
     finally:
