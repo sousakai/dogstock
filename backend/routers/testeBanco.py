@@ -15,7 +15,7 @@ def create_db_session(env_type: str):
 @router.get("/teste-db")
 def teste_db():
     resultados = {}
-    for env in ["leitura", "escrita"]:
+    for env in ["leitura", "escrita", "admin", "powerbi"]:
         SessionLocal, ENV_TYPE = create_db_session(env)
         db = SessionLocal()
         try:
