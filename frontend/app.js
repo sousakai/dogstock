@@ -87,7 +87,7 @@ async function carregarProdutos() {
       lista.appendChild(li);
     });
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar Produtos: ${err}</li>`;
+    lista.innerHTML = `<li>Erro ao carregar produtos: ${err}</li>`;
     console.error(err);
   }
 }
@@ -119,7 +119,7 @@ async function carregarFornecedores() {
       lista.appendChild(li);
     });
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar Produtos: ${err}</li>`;
+    lista.innerHTML = `<li>Erro ao carregar fornecedores: ${err}</li>`;
     console.error(err);
   }
 }
@@ -153,10 +153,65 @@ async function carregarMovimentacoes() {
       lista.appendChild(li);
     });
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar Produtos: ${err}</li>`;
+    lista.innerHTML = `<li>Erro ao carregar movimentações: ${err}</li>`;
     console.error(err);
   }
 }
+
+// FUNÇÃO PARA CONSULTAR TIPOS DE PAGAMENTO - TABELA TIPO_PAGAMENTO
+async function carregarTipoPagamento() {
+  const lista = document.getElementById("listaTipoPag");
+  lista.innerHTML = "<li>Carregando...</li>";
+
+  try {
+    const res = await fetch("/tipopagamento"); // router da api backend
+    const data = await res.json();
+    console.log("Retorno da API:", data);
+
+    const tipo_Pagamento = Array.isArray(data) ? data : Object.values(data);
+
+    lista.innerHTML = "";
+
+    tipo_Pagamento.forEach(tpag => {
+      const li = document.createElement("li");
+      li.textContent = 
+        `${tpag.id} - 
+        ${tpag.descricao}`;
+      lista.appendChild(li);
+    });
+  } catch (err) {
+    lista.innerHTML = `<li>Erro ao carregar tipos de pagamento: ${err}</li>`;
+    console.error(err);
+  }
+}
+
+// FUNÇÃO PARA CONSULTAR TIPOS DE MOVIMENTACAO - TABELA TIPO_MOVIMENTACAO
+async function carregarTipoMovimentacao() {
+  const lista = document.getElementById("listaTipoMov");
+  lista.innerHTML = "<li>Carregando...</li>";
+
+  try {
+    const res = await fetch("/tipomovimentacao"); // router da api backend
+    const data = await res.json();
+    console.log("Retorno da API:", data);
+
+    const tipo_Movimentacao = Array.isArray(data) ? data : Object.values(data);
+
+    lista.innerHTML = "";
+
+    tipo_Movimentacao.forEach(tmov => {
+      const li = document.createElement("li");
+      li.textContent = 
+        `${tmov.id} - 
+        ${tmov.descricao_mov}`;
+      lista.appendChild(li);
+    });
+  } catch (err) {
+    lista.innerHTML = `<li>Erro ao carregar tipos de movimentação: ${err}</li>`;
+    console.error(err);
+  }
+}
+
 
 // Roda as duas funções ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
@@ -165,4 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
   carregarProdutos();
   carregarFornecedores();
   carregarMovimentacoes();
+  carregarTipoPagamento();
+  carregarTipoMovimentacao();
 });

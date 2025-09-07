@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from routers import testeBanco, categorias, produtos, movimentacoes, fornecedores # atualizar sempre que incluir routers
+from routers import testeBanco, categorias, produtos, movimentacoes, fornecedores, tipoPagamento, tipoMovimentacao
+# atualizar sempre que incluir routers
 import os
 
 app = FastAPI()
@@ -12,6 +13,8 @@ app.include_router(categorias.router)
 app.include_router(produtos.router)
 app.include_router(movimentacoes.router)
 app.include_router(fornecedores.router)
+app.include_router(tipoPagamento.router)
+app.include_router(tipoMovimentacao.router)
 
 # caminho para ser hosteado (arquivo testes.html, evita conflito com index.html)
 teste_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "testes.html")
