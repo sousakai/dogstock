@@ -1,77 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Teste Conexão Banco</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            color: #333;
-        }
-        .env-result {
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-        }
-        .ok {
-            background-color: #28a745;
-        }
-        .erro {
-            background-color: #dc3545;
-        }
-        pre {
-            background: #eee;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>DogStock APIs</title>
+  <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <h1>Teste de Conexão com o Banco</h1>
-    <button onclick="testarConexao()">Testar API</button>
-    <div id="resultados"></div>
+  <h1>Teste de Conexão com o Banco</h1>
+  <button onclick="testarConexao()">Testar API</button>
+  <div id="resultados"></div>
+    
+  <h1>Categorias</h1>
+  <ul id="listaCategorias">
+    <li>Carregando categorias...</li>
+  </ul>
 
-    <script>
-        async function testarConexao() {
-            const resultadosDiv = document.getElementById("resultados");
-            resultadosDiv.innerHTML = "<p>Carregando...</p>";
-
-            try {
-                const response = await fetch("/teste-db"); // endpoint da API
-                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
-                
-                const data = await response.json();
-                resultadosDiv.innerHTML = "";
-
-                for (const env in data) {
-                    const item = data[env];
-                    const div = document.createElement("div");
-                    div.classList.add("env-result");
-                    div.classList.add(item.status === "ok" ? "ok" : "erro");
-
-                    div.innerHTML = `<strong>${env.toUpperCase()}</strong> - Status: ${item.status.toUpperCase()}`;
-                    if (item.status === "erro") {
-                        const pre = document.createElement("pre");
-                        pre.textContent = item.mensagem;
-                        div.appendChild(pre);
-                    } else {
-                        div.innerHTML += ` - Result: ${item.result}`;
-                    }
-
-                    resultadosDiv.appendChild(div);
-                }
-
-            } catch (err) {
-                resultadosDiv.innerHTML = `<p style="color:red;">Erro ao chamar a API: ${err.message}</p>`;
-            }
-        }
-    </script>
+  <script src="app.js"></script>
 </body>
 </html>
