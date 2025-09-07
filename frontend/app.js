@@ -49,7 +49,9 @@ async function carregarCategorias() {
 
     categorias.forEach(cat => {
       const li = document.createElement("li");
-      li.textContent = `${cat.id} - ${cat.descricao}`;
+      li.textContent = 
+        `${cat.id} - 
+        ${cat.descricao}`;
       lista.appendChild(li);
     });
   } catch (err) {
@@ -68,13 +70,86 @@ async function carregarProdutos() {
     const data = await res.json();
     console.log("Retorno da API:", data);
 
-    const categorias = Array.isArray(data) ? data : Object.values(data);
+    const produtos = Array.isArray(data) ? data : Object.values(data);
 
     lista.innerHTML = "";
 
-    categorias.forEach(cat => {
+    produtos.forEach(prod => {
       const li = document.createElement("li");
-      li.textContent = `${cat.id} - ${cat.nome} - ${cat.medida} - ${cat.qtd_disponivel} - ${cat.qtd_minima} - ${cat.categoria_id} - ${cat.status}`;
+      li.textContent = 
+        `${prod.id} - 
+        ${prod.nome} - 
+        ${prod.medida} - 
+        ${prod.qtd_disponivel} - 
+        ${prod.qtd_minima} - 
+        ${prod.categoria_id} - 
+        ${prod.status}`;
+      lista.appendChild(li);
+    });
+  } catch (err) {
+    lista.innerHTML = `<li>Erro ao carregar Produtos: ${err}</li>`;
+    console.error(err);
+  }
+}
+
+
+// FUNÇÃO PARA LISTAR FORNECEDORES - TABELA FORNECEDORES
+async function carregarFornecedores() {
+  const lista = document.getElementById("listaFornecedores");
+  lista.innerHTML = "<li>Carregando...</li>";
+
+  try {
+    const res = await fetch("/fornecedores"); // router da api backend
+    const data = await res.json();
+    console.log("Retorno da API:", data);
+
+    const fornecedores = Array.isArray(data) ? data : Object.values(data);
+
+    lista.innerHTML = "";
+
+    fornecedores.forEach(forn => {
+      const li = document.createElement("li");
+      li.textContent = 
+        `${forn.id} - 
+        ${forn.nome} - 
+        ${forn.contato} - 
+        ${forn.email} - 
+        ${forn.cnpj} - 
+        ${forn.status}`;
+      lista.appendChild(li);
+    });
+  } catch (err) {
+    lista.innerHTML = `<li>Erro ao carregar Produtos: ${err}</li>`;
+    console.error(err);
+  }
+}
+
+// FUNÇÃO PARA CONSULTAR MOVIMENTACOES - TABELA MOVIMENTACOES
+async function carregarMovimentacoes() {
+  const lista = document.getElementById("listaMovimentacoes");
+  lista.innerHTML = "<li>Carregando...</li>";
+
+  try {
+    const res = await fetch("/movimentacoes"); // router da api backend
+    const data = await res.json();
+    console.log("Retorno da API:", data);
+
+    const movimentacoes= Array.isArray(data) ? data : Object.values(data);
+
+    lista.innerHTML = "";
+
+    movimentacoes.forEach(mov => {
+      const li = document.createElement("li");
+      li.textContent = 
+        `${mov.id} - 
+        ${mov.produto_id} - 
+        ${mov.quantidade} - 
+        ${mov.data} - 
+        ${mov.tipo_mov_id} - 
+        ${mov.preco_venda} -
+        ${mov.preco_compra} - 
+        ${mov.fornecedor_id} - 
+        ${mov.tipo_pag_id}`;
       lista.appendChild(li);
     });
   } catch (err) {
@@ -88,4 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
   carregarCategorias();
   testarConexao();
   carregarProdutos();
+  carregarFornecedores();
+  carregarMovimentacoes();
 });
