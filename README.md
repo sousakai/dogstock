@@ -1,6 +1,6 @@
 # DogStock
 
-Repositório do projeto de Gerenciamento de Estoque desenvolvido para a disciplina de Banco de Dados II, na Universidade Cidade de São Paulo (UNICID). 
+Repositório do projeto de Gerenciamento de Estoque desenvolvido para a disciplina de Laboratório de Banco de Dados Avançado (2025/2), na Universidade Cidade de São Paulo (UNICID). 
 
 **Estado atual:** roda apenas localmente, focado no teste de conexão, leitura e escrita com o banco de dados remoto.
 
