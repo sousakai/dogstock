@@ -1,77 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Teste Conexão Banco</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            color: #333;
-        }
-        .env-result {
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-        }
-        .ok {
-            background-color: #28a745;
-        }
-        .erro {
-            background-color: #dc3545;
-        }
-        pre {
-            background: #eee;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Dog Stock</title>
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
+
 <body>
-    <h1>Teste de Conexão com o Banco</h1>
-    <button onclick="testarConexao()">Testar API</button>
-    <div id="resultados"></div>
+  <div class="login-container">
+    <div class="logo">
+      <img src="./assets/img/logo.png" alt="Logo DOG STOCK">
+       <h1>DOG STOCK</h1>
+    </div>
+    <form id="login-form">
+      <input type="text" id="usuario" placeholder="Usuário" required>
 
-    <script>
-        async function testarConexao() {
-            const resultadosDiv = document.getElementById("resultados");
-            resultadosDiv.innerHTML = "<p>Carregando...</p>";
+      <input type="password" id="senha" placeholder="Senha" required>
 
-            try {
-                const response = await fetch("/teste-db"); // endpoint da API
-                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
-                
-                const data = await response.json();
-                resultadosDiv.innerHTML = "";
+      <button type="submit">Entrar</button>
 
-                for (const env in data) {
-                    const item = data[env];
-                    const div = document.createElement("div");
-                    div.classList.add("env-result");
-                    div.classList.add(item.status === "ok" ? "ok" : "erro");
+    </form>
 
-                    div.innerHTML = `<strong>${env.toUpperCase()}</strong> - Status: ${item.status.toUpperCase()}`;
-                    if (item.status === "erro") {
-                        const pre = document.createElement("pre");
-                        pre.textContent = item.mensagem;
-                        div.appendChild(pre);
-                    } else {
-                        div.innerHTML += ` - Result: ${item.result}`;
-                    }
+    <p id="login-erro" class="erro">Usuário ou senha incorretos!</p>
+  </div>
 
-                    resultadosDiv.appendChild(div);
-                }
-
-            } catch (err) {
-                resultadosDiv.innerHTML = `<p style="color:red;">Erro ao chamar a API: ${err.message}</p>`;
-            }
-        }
-    </script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/login.js"></script>
 </body>
+
 </html>

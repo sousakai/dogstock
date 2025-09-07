@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estoque</title>
+  <link rel="stylesheet" href="../assets/css/estoque.css">
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+<div class="logo">
+  <img src="../assets/img/logo.png" alt="Logo DOG STOCK">
+  <h1>Dog Stock</h1 >
+</div>
+    <nav>
+
+      <!-- Colocar outros icones  -->
+      <ul>
+        <li><a href="#"><span>📦</span> Produtos</a></li>
+        <li><a href="#"><span>👥</span> Clientes</a></li>
+        <li><a href="#"><span>📜</span> Históricos</a></li>
+        <li><a href="#"><span>⚙️</span> Configurações</a></li>
+      </ul>
+    </nav>
+    <button id="btn-sair">Sair</button>
+  </aside>
+
+
+  <main class="conteudo">
+    <header>
+      <h1>Produtos em Estoque</h1>
+    </header>
+
+    <section class="tabela-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Categoria</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-produtos"></tbody>
+      </table>
+
+    </section>
+  </main>
+
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/produtos.js"></script>
+</body>
+
+</html>

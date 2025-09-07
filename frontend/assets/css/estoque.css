@@ -1,0 +1,166 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background: #f5f7fa;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    background: #1e293b;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo img {
+    max-width: 170px;
+    height: auto;
+    display: block;
+}
+
+.logo h1 {
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    margin: 0;
+}
+
+.sidebar h2 {
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+    color: #cbd5e1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    transition: background 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+    background: #334155;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.sidebar button {
+    margin: 20px;
+    padding: 10px;
+    border: none;
+    background: #ef4444;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar button:hover {
+    background: #dc2626;
+}
+
+/* Conteúdo */
+.conteudo {
+    margin-left: 220px;
+    flex: 1;
+    padding: 20px;
+}
+
+header h1 {
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+/* Tabela */
+.tabela-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #1e293b;
+    color: #fff;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+tbody tr:hover {
+    background: #e2e8f0;
+}
+
+td img {
+    cursor: pointer;
+    margin: 0 5px;
+    transition: transform 0.2s;
+}
+
+td img:hover {
+    transform: scale(1.2);
+}
+
+.status {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status.verde {
+    background: #22c55e;
+}
+
+.status.amarelo {
+    background: #facc15;
+}
+
+.status.vermelho {
+    background: #ef4444;
+}
