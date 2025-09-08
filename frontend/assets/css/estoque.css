@@ -1,15 +1,9 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
-}
+@import url("./style.css");
 
 body {
     display: flex;
     height: 100vh;
-    background: #f5f7fa;
+    background: var(--back-5);
 }
 
 /* Sidebar */
@@ -19,8 +13,8 @@ body {
     left: 0;
     width: 220px;
     height: 100vh;
-    background: #015C91;
-    color: #fff;
+    background: var(--cor-1);
+    color: var(--cor-3);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -41,14 +35,14 @@ body {
 }
 
 .logo h1 {
-    color: #fff;
+    color: var(--cor-3);
     font-size: 1.4rem;
     line-height: 1;
     margin: 0;
 }
 
 .sidebar h2 {
-    color: #fff;
+    color: var(--cor-3);
     font-size: 1.3rem;
 }
 
@@ -61,7 +55,7 @@ body {
 }
 
 .sidebar nav ul li a {
-    color: #cbd5e1;
+    color: var(--nav-6);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -72,15 +66,15 @@ body {
 .sidebar nav ul li a:hover {
     background: #015C91;
     border-radius: 8px;
-    color: #fff;
+    color: var(--cor-3);
 }
 
 .sidebar button {
     margin: 20px;
     padding: 10px;
     border: none;
-    background: #ef4444;
-    color: #fff;
+    background: var(--error-4);
+    color: var(--cor-3);
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
@@ -100,12 +94,12 @@ body {
 
 header h1 {
     margin-bottom: 20px;
-    color: #1e293b;
+    color: var(--cor-1);
 }
 
 /* Tabela */
 .tabela-container {
-    background: #fff;
+    background: var(--cor-3);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -118,8 +112,8 @@ table {
 }
 
 thead {
-    background: #015C91;
-    color: #fff;
+    background: var(--cor-1);
+    color: var(--cor-3);
 }
 
 th,
@@ -146,6 +140,7 @@ td img:hover {
     transform: scale(1.2);
 }
 
+/*Status*/
 .status {
     display: inline-block;
     width: 12px;

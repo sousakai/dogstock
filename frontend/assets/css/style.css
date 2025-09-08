@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+:root{
+    --cor-1:#015C91;
+    --cor-2: #666666;
+    --cor-3: #fff;
+    --error-4:#e63946;
+    --back-5:#f5f7fa;
+    --nav-6:#cbd5e1;
+}
