@@ -82,19 +82,27 @@ document.getElementById("filtro").addEventListener("input", (e) => {
   preencherTabela(filtrados);
 });
 
-// Exportar CSV
+// Exportar em PDF arrumar a lógica
 document.getElementById("btn-exportar").addEventListener("click", () => {
-  let csv = "Nome,Preço,Estoque,Categoria\n";
-  produtosGlobais.forEach(p => {
-    csv += `${p.title},${p.price},${p.stock},${p.category}\n`;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Cabeçalhos da tabela
+  const headers = [["Produto", "Preço", "Estoque", "Categoria"]];
+  const data = produtosGlobais.map(p => [p.title, p.price, p.stock, p.category]);
+
+  // Gerando a tabela
+  doc.autoTable({
+    head: headers,
+    body: data,
+    startY: 20,
+    styles: { fontSize: 12 },
+    headStyles: { fillColor: [1, 92, 145] },
   });
-  const blob = new Blob([csv], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "produtos.csv";
-  a.click();
-  URL.revokeObjectURL(url);
+
+  doc.text("Lista de Produtos", 14, 15);
+
+  doc.save("produtos.pdf");
 });
 
 // Adicionar produto (placeholder)
