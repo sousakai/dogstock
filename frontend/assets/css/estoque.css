@@ -97,6 +97,39 @@ header h1 {
     color: var(--cor-1);
 }
 
+/*Header da tabela*/
+.tabela-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tabela-header input{
+    padding: 8px;
+    border: 1px solid var(--cor-2);
+    border-radius: 6px;
+    width: 200px;
+}
+
+.tabela-header .botoes-header button{
+  margin-left: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--cor-1);
+  color: var(--cor-3);
+  cursor: pointer;
+}
+
+.tabela-header .botoes-header button:hover {
+  background-color: #0056b3;
+}
+
+th {
+  cursor: pointer;
+}
+
 /* Tabela */
 .tabela-container {
     background: var(--cor-3);

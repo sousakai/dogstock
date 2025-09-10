@@ -11,10 +11,10 @@
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
-<div class="logo">
-  <img src="../assets/img/logo.png" alt="Logo DOG STOCK">
-  <h1>Dog Stock</h1 >
-</div>
+    <div class="logo">
+      <img src="../assets/img/logo.png" alt="Logo DOG STOCK">
+      <h1>Dog Stock</h1>
+    </div>
     <nav>
 
       <!-- Colocar outros icones  -->
@@ -35,13 +35,22 @@
     </header>
 
     <section class="tabela-container">
+
+      <div class="tabela-header">
+        <input type="text" id="filtro" placeholder="🔍 Filtrar produtos...">
+        <div class="botoes-header">
+          <button id="btn-adicionar">➕ Adicionar</button>
+          <button id="btn-exportar">📤 Exportar</button>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Categoria</th>
+            <th data-col="title">Nome ⬍</th>
+            <th data-col="price">Preço ⬍</th>
+            <th data-col="stock">Estoque ⬍</th>
+            <th data-col="category">Categoria ⬍</th>
             <th>Status</th>
             <th>Ações</th>
           </tr>
