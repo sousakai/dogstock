@@ -8,7 +8,7 @@ Repositório do projeto de Gerenciamento de Estoque desenvolvido para a discipli
 |Nome |Atuação |
 |----------------------|-------------|
 |[Kayke Gonçalves de Sousa](https://github.com/sousakai) |Backend |
-|Ryahn Paulo Sobral Jesus|Backend |
+|[Ryahn Paulo Sobral Jesus](https://github.com/RyahnS7)|Backend |
 |[Stenio Lucas da Silva Lima](https://github.com/Steniol) |Backend |
 |[Bruno Vinicius Chaga de Medeiros Costa](https://github.com/Brunera98)|Frontend |
 |[Kauã Lourenço da Silva](https://github.com/KauaLS)|Front |
