@@ -4,222 +4,170 @@ async function testarConexao() {
   resultadosDiv.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const response = await fetch("/teste-db"); // endpoint da API
+    const response = await fetch("/consulta/teste-banco/");
     if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
     
     const data = await response.json();
     resultadosDiv.innerHTML = "";
 
+    const table = document.createElement("table");
+    table.classList.add("result-table");
+    const header = table.insertRow();
+    header.innerHTML = "<th>Ambiente</th><th>Status</th><th>Resultado / Erro</th>";
+
     for (const env in data) {
       const item = data[env];
-      const div = document.createElement("div");
-      div.classList.add("env-result");
-      div.classList.add(item.status === "ok" ? "ok" : "erro");
-
-      div.innerHTML = `<strong>${env.toUpperCase()}</strong> - Status: ${item.status.toUpperCase()}`;
-      if (item.status === "erro") {
-        const pre = document.createElement("pre");
-        pre.textContent = item.mensagem;
-        div.appendChild(pre);
-      } else {
-        div.innerHTML += ` - Result: ${item.result}`;
-      }
-
-      resultadosDiv.appendChild(div);
+      const row = table.insertRow();
+      row.insertCell().textContent = env.toUpperCase();
+      row.insertCell().textContent = item.status.toUpperCase();
+      row.insertCell().textContent = item.status === "ok" ? item.result : item.mensagem;
+      if(item.status !== "ok") row.cells[2].style.color = "red";
     }
+
+    resultadosDiv.appendChild(table);
 
   } catch (err) {
     resultadosDiv.innerHTML = `<p style="color:red;">Erro ao chamar a API: ${err.message}</p>`;
   }
 }
 
+// FUNÇÃO GENERICA PARA CRIAR TABELA DE DADOS
+function criarTabela(dados, colunas) {
+  const table = document.createElement("table");
+  table.classList.add("result-table");
+
+  // Cabeçalho
+  const thead = table.createTHead();
+  const headerRow = thead.insertRow();
+  colunas.forEach(col => {
+    const th = document.createElement("th");
+    th.textContent = col;
+    headerRow.appendChild(th);
+  });
+
+  // Corpo
+  const tbody = table.createTBody();
+  dados.forEach(item => {
+    const row = tbody.insertRow();
+    colunas.forEach(col => {
+      const cell = row.insertCell();
+      cell.textContent = item[col] !== undefined ? item[col] : "";
+    });
+  });
+
+  return table;
+}
+
 // FUNÇÃO DE CONSULTA NA TABELA CATEGORIAS
 async function carregarCategorias() {
-  const lista = document.getElementById("listaCategorias");
-  lista.innerHTML = "<li>Carregando...</li>";
+  const container = document.getElementById("listaCategorias");
+  container.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const res = await fetch("/categorias"); // router da api backend
+    const res = await fetch("/consulta/categorias/");
     const data = await res.json();
-    console.log("Retorno da API:", data);
+    container.innerHTML = "";
 
-    const categorias = Array.isArray(data) ? data : Object.values(data);
-
-    lista.innerHTML = "";
-
-    categorias.forEach(cat => {
-      const li = document.createElement("li");
-      li.textContent = 
-        `${cat.id} - 
-        ${cat.descricao}`;
-      lista.appendChild(li);
-    });
+    const colunas = ["id", "descricao"];
+    const tabela = criarTabela(data, colunas);
+    container.appendChild(tabela);
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar categorias: ${err}</li>`;
+    container.innerHTML = `<p style="color:red;">Erro ao carregar categorias: ${err}</p>`;
     console.error(err);
   }
 }
 
-// FUNÇÃO PARA CONSULTAR OS PRODUTOS - TABELA PRODUTOS
+// FUNÇÃO PARA PRODUTOS
 async function carregarProdutos() {
-  const lista = document.getElementById("listaProdutos");
-  lista.innerHTML = "<li>Carregando...</li>";
+  const container = document.getElementById("listaProdutos");
+  container.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const res = await fetch("/produtos"); // router da api backend
+    const res = await fetch("/consulta/produtos/");
     const data = await res.json();
-    console.log("Retorno da API:", data);
+    container.innerHTML = "";
 
-    const produtos = Array.isArray(data) ? data : Object.values(data);
-
-    lista.innerHTML = "";
-
-    produtos.forEach(prod => {
-      const li = document.createElement("li");
-      li.textContent = 
-        `${prod.id} - 
-        ${prod.nome} - 
-        ${prod.medida} - 
-        ${prod.qtd_disponivel} - 
-        ${prod.qtd_minima} - 
-        ${prod.categoria_id} - 
-        ${prod.status}`;
-      lista.appendChild(li);
-    });
+    const colunas = ["id", "nome", "medida", "qtd_disponivel", "qtd_minima", "categoria_id", "status"];
+    const tabela = criarTabela(data, colunas);
+    container.appendChild(tabela);
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar produtos: ${err}</li>`;
+    container.innerHTML = `<p style="color:red;">Erro ao carregar produtos: ${err}</p>`;
     console.error(err);
   }
 }
 
-
-// FUNÇÃO PARA LISTAR FORNECEDORES - TABELA FORNECEDORES
+// FUNÇÃO PARA FORNECEDORES
 async function carregarFornecedores() {
-  const lista = document.getElementById("listaFornecedores");
-  lista.innerHTML = "<li>Carregando...</li>";
+  const container = document.getElementById("listaFornecedores");
+  container.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const res = await fetch("/fornecedores"); // router da api backend
+    const res = await fetch("/consulta/fornecedores/");
     const data = await res.json();
-    console.log("Retorno da API:", data);
+    container.innerHTML = "";
 
-    const fornecedores = Array.isArray(data) ? data : Object.values(data);
-
-    lista.innerHTML = "";
-
-    fornecedores.forEach(forn => {
-      const li = document.createElement("li");
-      li.textContent = 
-        `${forn.id} - 
-        ${forn.nome} - 
-        ${forn.contato} - 
-        ${forn.email} - 
-        ${forn.cnpj} - 
-        ${forn.status}`;
-      lista.appendChild(li);
-    });
+    const colunas = ["id", "nome", "contato", "email", "cnpj", "status"];
+    const tabela = criarTabela(data, colunas);
+    container.appendChild(tabela);
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar fornecedores: ${err}</li>`;
+    container.innerHTML = `<p style="color:red;">Erro ao carregar fornecedores: ${err}</p>`;
     console.error(err);
   }
 }
 
-// FUNÇÃO PARA CONSULTAR MOVIMENTACOES - TABELA MOVIMENTACOES
+// FUNÇÃO PARA MOVIMENTAÇÕES
 async function carregarMovimentacoes() {
-  const lista = document.getElementById("listaMovimentacoes");
-  lista.innerHTML = "<li>Carregando...</li>";
+  const container = document.getElementById("listaMovimentacoes");
+  container.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const res = await fetch("/movimentacoes"); // router da api backend
+    const res = await fetch("/consulta/movimentacoes/");
     const data = await res.json();
-    console.log("Retorno da API:", data);
+    container.innerHTML = "";
 
-    const movimentacoes= Array.isArray(data) ? data : Object.values(data);
-
-    lista.innerHTML = "";
-
-    movimentacoes.forEach(mov => {
-      const li = document.createElement("li");
-      li.textContent = 
-        `${mov.id} - 
-        ${mov.produto_id} - 
-        ${mov.quantidade} - 
-        ${mov.data} - 
-        ${mov.tipo_mov_id} - 
-        ${mov.preco_venda} -
-        ${mov.preco_compra} - 
-        ${mov.fornecedor_id} - 
-        ${mov.tipo_pag_id}`;
-      lista.appendChild(li);
-    });
+    const colunas = ["id", "produto_id", "quantidade", "data", "tipo_mov_id", "preco_venda", "preco_compra", "fornecedor_id", "tipo_pag_id"];
+    const tabela = criarTabela(data, colunas);
+    container.appendChild(tabela);
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar movimentações: ${err}</li>`;
+    container.innerHTML = `<p style="color:red;">Erro ao carregar movimentações: ${err}</p>`;
     console.error(err);
   }
 }
 
-// FUNÇÃO PARA CONSULTAR TIPOS DE PAGAMENTO - TABELA TIPO_PAGAMENTO
+// FUNÇÃO PARA TIPOS DE PAGAMENTO
 async function carregarTipoPagamento() {
-  const lista = document.getElementById("listaTipoPag");
-  lista.innerHTML = "<li>Carregando...</li>";
+  const container = document.getElementById("listaTipoPag");
+  container.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const res = await fetch("/tipopagamento"); // router da api backend
+    const res = await fetch("/consulta/tipopagamento/");
     const data = await res.json();
-    console.log("Retorno da API:", data);
+    container.innerHTML = "";
 
-    const tipo_Pagamento = Array.isArray(data) ? data : Object.values(data);
-
-    lista.innerHTML = "";
-
-    tipo_Pagamento.forEach(tpag => {
-      const li = document.createElement("li");
-      li.textContent = 
-        `${tpag.id} - 
-        ${tpag.descricao}`;
-      lista.appendChild(li);
-    });
+    const colunas = ["id", "descricao"];
+    const tabela = criarTabela(data, colunas);
+    container.appendChild(tabela);
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar tipos de pagamento: ${err}</li>`;
+    container.innerHTML = `<p style="color:red;">Erro ao carregar tipos de pagamento: ${err}</p>`;
     console.error(err);
   }
 }
 
-// FUNÇÃO PARA CONSULTAR TIPOS DE MOVIMENTACAO - TABELA TIPO_MOVIMENTACAO
+// FUNÇÃO PARA TIPOS DE MOVIMENTAÇÃO
 async function carregarTipoMovimentacao() {
-  const lista = document.getElementById("listaTipoMov");
-  lista.innerHTML = "<li>Carregando...</li>";
+  const container = document.getElementById("listaTipoMov");
+  container.innerHTML = "<p>Carregando...</p>";
 
   try {
-    const res = await fetch("/tipomovimentacao"); // router da api backend
+    const res = await fetch("/consulta/tipomovimentacao/");
     const data = await res.json();
-    console.log("Retorno da API:", data);
+    container.innerHTML = "";
 
-    const tipo_Movimentacao = Array.isArray(data) ? data : Object.values(data);
-
-    lista.innerHTML = "";
-
-    tipo_Movimentacao.forEach(tmov => {
-      const li = document.createElement("li");
-      li.textContent = 
-        `${tmov.id} - 
-        ${tmov.descricao_mov}`;
-      lista.appendChild(li);
-    });
+    const colunas = ["id", "descricao_mov"];
+    const tabela = criarTabela(data, colunas);
+    container.appendChild(tabela);
   } catch (err) {
-    lista.innerHTML = `<li>Erro ao carregar tipos de movimentação: ${err}</li>`;
+    container.innerHTML = `<p style="color:red;">Erro ao carregar tipos de movimentação: ${err}</p>`;
     console.error(err);
   }
 }
-
-
-// Roda as duas funções ao carregar a página
-document.addEventListener("DOMContentLoaded", () => {
-  carregarCategorias();
-  testarConexao();
-  carregarProdutos();
-  carregarFornecedores();
-  carregarMovimentacoes();
-  carregarTipoPagamento();
-  carregarTipoMovimentacao();
-});

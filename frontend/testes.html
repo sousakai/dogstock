@@ -3,49 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>DogStock APIs</title>
-  <link rel="stylesheet" href="/static/testes.css"> <!-- usei /static para combinar com o /static do main.py, se não só carrega o HTML estático -->
+  <link rel="stylesheet" href="/static/testes.css">
 </head>
 
 <body>
   <h1>Teste de Conexão com o Banco</h1>
   <button onclick="testarConexao()">Testar API</button>
   <div id="resultados"></div>
-    
+
   <h1>Categorias</h1>
-  <ul id="listaCategorias">
-    <li>Carregando categorias...</li>
-  </ul>
+  <div id="listaCategorias">
+    <button onclick="carregarCategorias()">Carregar Categorias</button>
+  </div>
 
-    
   <h1>Produtos</h1>
-  <ul id="listaProdutos">
-    <li>Carregando categorias...</li>
-  </ul>
+  <div id="listaProdutos">
+    <button onclick="carregarProdutos()">Carregar Produtos</button>
+  </div>
 
-
-   <h1>Movimentacoes</h1>
-  <ul id="listaMovimentacoes">
-    <li>Carregando movimentações...</li>
-  </ul>
+  <h1>Movimentações</h1>
+  <div id="listaMovimentacoes">
+    <button onclick="carregarMovimentacoes()">Carregar Movimentações</button>
+  </div>
 
   <h1>Fornecedores</h1>
-  <ul id="listaFornecedores">
-    <li>Carregando Fornecedores...</li>
-  </ul>
+  <div id="listaFornecedores">
+    <button onclick="carregarFornecedores()">Carregar Fornecedores</button>
+  </div>
 
-  
   <h1>Tipos de Pagamento</h1>
-  <ul id="listaTipoPag">
-    <li>Carregando tipos de pagamento...</li>
-  </ul>
+  <div id="listaTipoPag">
+    <button onclick="carregarTipoPagamento()">Carregar Tipos de Pagamento</button>
+  </div>
 
-   
-  <h1>Tipos de Movimentacoes</h1>
-  <ul id="listaTipoMov">
-    <li>Carregando tipos de movimentações...</li>
-  </ul>
+  <h1>Tipos de Movimentações</h1>
+  <div id="listaTipoMov">
+    <button onclick="carregarTipoMovimentacao()">Carregar Tipos de Movimentação</button>
+  </div>
 
-
-  <script src="/static/app.js"></script> <!-- usei /static para combinar com o /static do main.py -->
+  <script src="/static/app.js"></script>
 </body>
 </html>
