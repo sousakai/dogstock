@@ -18,7 +18,7 @@ Repositório do projeto de Gerenciamento de Estoque desenvolvido para a discipli
 
 ### Como rodar:
 
-Atualmente, o repositório conta com uma página index.html, que faz requisições para a API Python (FastApi), com o objetivo de testar a conexão com o banco de dados PostgreSQL.
+Atualmente, o repositório conta com uma página index.html, que faz requisições para a API Python (FastApi), com o objetivo de testar a conexão com o banco de dados MySQL.
 
 Para executar o teste, é necessário possuir o .env.leitura (com as credencias de leitura) e o .env.escrita (com credenciais de escrita). Após realizar o download do repositório, é necessário criar um "venv" e instalar o Uvicorn e todas as dependências necessárias.
 
