@@ -1,7 +1,15 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from routers import testeBanco, categorias, produtos, movimentacoes, fornecedores, tipoPagamento, tipoMovimentacao
+
+from routers.consulta import testeBanco
+from routers.consulta import categorias
+from routers.consulta import produtos
+from routers.consulta import movimentacoes
+from routers.consulta import fornecedores
+from routers.consulta import tipoPagamento
+from routers.consulta import tipoMovimentacao
+
 # atualizar sempre que incluir routers
 import os
 

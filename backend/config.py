@@ -20,5 +20,6 @@ def load_config(env_type: str):
     if not all([DB_HOST, DB_NAME, DB_USER, DB_PASS]):
         raise ValueError(f"Alguma variável de {dotenv_path} não está definida corretamente.")
 
-    DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
+    DATABASE_URL = f"mysql+mysqlconnector://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
+
     return DATABASE_URL, env_type

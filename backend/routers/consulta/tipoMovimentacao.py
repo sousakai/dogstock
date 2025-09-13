@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from config import load_config
 
-router = APIRouter()
+router = APIRouter(prefix="/consulta/tipomovimentacao", tags=["Consulta - Tabela tipo_movimentacao"]) 
 
 def create_db_session(env_type: str):
     DATABASE_URL, ENV_TYPE = load_config(env_type)
@@ -11,7 +11,7 @@ def create_db_session(env_type: str):
     SessionLocal = sessionmaker(bind=engine)
     return SessionLocal, ENV_TYPE
 
-@router.get("/tipomovimentacao")
+@router.get("/")
 
 
 def listar_tipoMovimentacao():
