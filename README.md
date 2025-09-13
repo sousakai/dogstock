@@ -11,7 +11,7 @@ Repositório do projeto de Gerenciamento de Estoque desenvolvido para a discipli
 |[Ryahn Paulo Sobral Jesus](https://github.com/RyahnS7)|Backend |
 |[Stenio Lucas da Silva Lima](https://github.com/Steniol) |Backend |
 |[Bruno Vinicius Chaga de Medeiros Costa](https://github.com/Brunera98)|Frontend |
-|[Kauã Lourenço da Silva](https://github.com/KauaLS)|Front |
+|[Kauã Lourenço da Silva](https://github.com/KauaLS)|Frontend |
 |[Luiz Henrique](https://github.com/luizynhoo)| Frontend|
 |[Nina Areal Cezario](https://github.com/ninaareal)| Dados e BI|
 ---
