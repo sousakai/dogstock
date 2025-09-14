@@ -3,8 +3,8 @@ import os
 from logging.handlers import TimedRotatingFileHandler
 
 # Caminhos das pastas dentro de 'consulta'
-LOGS_DIR = "consulta/logs"         # Logs de leitura (GET)
-REGISTRO_DIR = "consulta/registro" # Logs de escrita (POST/PUT/DELETE)
+LOGS_DIR = "logs/consulta"         # Logs de leitura (GET)
+REGISTRO_DIR = "logs/registro" # Logs de escrita (POST/PUT/DELETE)
 
 # Garante que as pastas existam
 os.makedirs(LOGS_DIR, exist_ok=True)

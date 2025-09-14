@@ -106,7 +106,7 @@ async function carregarFornecedores() {
     const data = await res.json();
     container.innerHTML = "";
 
-    const colunas = ["id", "nome", "contato", "email", "cnpj", "status"];
+    const colunas = ["id", "razao_social", "contato", "email", "cnpj", "status"];
     const tabela = criarTabela(data, colunas);
     container.appendChild(tabela);
   } catch (err) {
