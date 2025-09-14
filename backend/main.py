@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+#imports dos routers de consulta
 from routers.consulta import testeBanco
 from routers.consulta import categorias
 from routers.consulta import produtos
@@ -10,7 +11,9 @@ from routers.consulta import fornecedores
 from routers.consulta import tipoPagamento
 from routers.consulta import tipoMovimentacao
 
-# atualizar sempre que incluir routers
+#imports dos routers de registro
+#from routers.registro import produtos
+
 import os
 
 app = FastAPI()
@@ -36,5 +39,5 @@ async def serve_teste():
 frontend_static_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
 app.mount("/static", StaticFiles(directory=frontend_static_path), name="frontend_static")
 
-print(app.routes)
+
 
