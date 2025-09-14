@@ -36,7 +36,7 @@ def listar_tipoMovimentacao(request: Request):
             }
         )
         return [{"id": row.id, 
-                 "descricao_mov": row.descricao_mov #o nome definido nas aspas é o nome final que vai ser encontrado pelo JS, independentemente do nome da tabela.
+                 "descricao": row.descricao #o nome definido nas aspas é o nome final que vai ser encontrado pelo JS, independentemente do nome da tabela.
                  } for row in result]
         
     except Exception as e:
