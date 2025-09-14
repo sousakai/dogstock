@@ -7,7 +7,7 @@ from logger import get_router_logger
 
 router = APIRouter(
     prefix="/consulta/fornecedores", 
-    tags=["Teste de Credenciais"]
+    tags=["Consulta - Tabela fornecedores"]
 )
 
 # Logger de consulta - manter registro=false para não cair na pasta de logs de registro
@@ -24,7 +24,8 @@ def listar_fornecedores(request: Request):  # request necessário para pegar IP 
     SessionLocal, ENV_TYPE = create_db_session("leitura")
     db = SessionLocal()
     try:
-        result = db.execute(text("SELECT id, descricao FROM categoria ORDER BY descricao")).fetchall()
+        
+        result = db.execute(text("SELECT * FROM fornecedores ORDER BY razao_social")).fetchall()
         
         logger_consulta.info(
             "",  # mensagem principal vazia porque usamos 'extra' para detalhes
@@ -39,7 +40,11 @@ def listar_fornecedores(request: Request):  # request necessário para pegar IP 
         return [
             {
                 "id": row.id,  # o nome definido nas aspas é o nome final que vai ser encontrado pelo JS
-                "descricao": row.descricao
+                "razao_social": row.razao_social,
+                "contato": row.contato,
+                "email": row.email,
+                "cnpj": row.cnpj,
+                "status": row.status
             } 
             for row in result
         ]

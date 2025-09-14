@@ -7,7 +7,7 @@ from logger import get_router_logger
 
 router = APIRouter(
     prefix="/consulta/categorias", 
-    tags=["Teste de Credenciais"]
+    tags=["Consulta - Tabela categorias"]
 )
 
 # Logger de consulta - manter registro=false para não cair na pasta de logs de registro
