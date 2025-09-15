@@ -84,28 +84,20 @@ document.getElementById("filtro").addEventListener("input", (e) => {
 
 // Exportar em PDF arrumar a lógica
 document.getElementById("btn-exportar").addEventListener("click", () => {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  // Cabeçalhos da tabela
-  const headers = [["Produto", "Preço", "Estoque", "Categoria"]];
-  const data = produtosGlobais.map(p => [p.title, p.price, p.stock, p.category]);
-
-  // Gerando a tabela
-  doc.autoTable({
-    head: headers,
-    body: data,
-    startY: 20,
-    styles: { fontSize: 12 },
-    headStyles: { fillColor: [1, 92, 145] },
-  });
-
-  doc.text("Lista de Produtos", 14, 15);
-
-  doc.save("produtos.pdf");
+  new window.jspdf.jsPDF()
+    .autoTable({
+      head: [["Produto", "Preço", "Estoque", "Categoria"]],
+      body: produtosGlobais.map(p => [p.title, p.price, p.stock, p.category]),
+      startY: 20,
+      styles: { fontSize: 12 },
+      headStyles: { fillColor: [1, 92, 145] },
+    })
+    .text("Lista de Produtos", 14, 15)
+    .save("Produtos.pdf");
 });
+
 
 // Adicionar produto (placeholder)
 document.getElementById("btn-adicionar").addEventListener("click", () => {
-  alert("Abrir modal para adicionar produto 🚀");
+  window.location.href = "novos-produtos.html"; 
 });
