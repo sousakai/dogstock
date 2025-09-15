@@ -11,7 +11,7 @@ Repositório do projeto de Gerenciamento de Estoque desenvolvido para a discipli
 |[Ryahn Paulo Sobral Jesus](https://github.com/RyahnS7)|Backend |
 |[Stenio Lucas da Silva Lima](https://github.com/Steniol) |Backend |
 |[Bruno Vinicius Chaga de Medeiros Costa](https://github.com/Brunera98)|Frontend |
-|[Kauã Lourenço da Silva](https://github.com/KauaLS)|Front |
+|[Kauã Lourenço da Silva](https://github.com/KauaLS)|Frontend |
 |[Luiz Henrique](https://github.com/luizynhoo)| Frontend|
 |[Nina Areal Cezario](https://github.com/ninaareal)| Dados e BI|
 ---
@@ -33,6 +33,10 @@ Importante mencionar que o acesso deve ser feito ao "link" localhost, se acessar
 ### Tecnologias Empregadas:
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" height="40" width="40 "/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" height="40" width="40 "/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original-wordmark.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original-wordmark.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" height="40" width="40"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" height="40" width="40"/>
+<<<<<<< HEAD
+=======
+          
+>>>>>>> main
           
 
 ---
