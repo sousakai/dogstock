@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from config import load_config
 
-router = APIRouter()
+router = APIRouter(prefix="/consulta/teste-banco", tags=["Teste de Credenciais"])   
 
 def create_db_session(env_type: str):
     """Cria engine e session para o env_type especificado"""
@@ -12,7 +12,7 @@ def create_db_session(env_type: str):
     SessionLocal = sessionmaker(bind=engine)
     return SessionLocal, ENV_TYPE
 
-@router.get("/teste-db")
+@router.get("/")
 def teste_db():
     resultados = {}
     for env in ["leitura", "escrita", "admin", "powerbi"]:
