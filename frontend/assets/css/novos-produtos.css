@@ -9,6 +9,7 @@
     gap: 20px;
 }
 
+
 .card {
     background-color: var(--cor-3);
     padding: 20px;
@@ -53,4 +54,30 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #013f61;
+}
+
+.tabs {
+    margin-bottom: 15px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--nav-6);
+    color: white;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-btn.active {
+    background-color: var(--cor-1);
+}
+
+.sessao {
+    display: none;
+}
+
+.sessao.active {
+    display: block;
 }
