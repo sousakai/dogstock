@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from database import get_db  # função que retorna a sessão do SQLAlchemy
@@ -22,15 +22,16 @@ logger_registro = get_router_logger("produtos", registro=True)
 # ROTA DE CRIAÇÃO DE PRODUTO
 # =========================
 @router.post("/", response_model=ProdutoResponse)
-def criar_produto(produto: ProdutoCreate, db: Session = Depends(get_db)):
+def criar_produto(produto: ProdutoCreate, request: Request, db: Session = Depends(get_db)):
     """
     Cria um novo produto na tabela 'produtos'.
     
     Passos:
     1. Recebe os dados validados pelo Pydantic (ProdutoCreate)
-    2. Verifica se já existe um produto com o mesmo nome (unicidade)
-    3. Insere no banco se não existir
-    4. Retorna o objeto criado (ProdutoResponse)
+    2. Estabelece a sessão com o banco via dependência da tabela categoria
+    3. Verifica se já existe um produto com o mesmo nome (unicidade)
+    4. Insere no banco se não existir
+    5. Retorna o objeto criado (ProdutoResponse)
     """
     try:
         # 1️.Verificação de existência
@@ -40,7 +41,7 @@ def criar_produto(produto: ProdutoCreate, db: Session = Depends(get_db)):
             logger_registro.warning(
                 "",
                 extra={
-                    "ip": "N/A",  # IP não disponível aqui
+                    "ip": request.client.host,
                     "status": 400,
                     "method": "POST",
                     "detail": f"Falha ao criar produto: Produto '{produto.nome}' já existe"
@@ -67,7 +68,7 @@ def criar_produto(produto: ProdutoCreate, db: Session = Depends(get_db)):
         logger_registro.info(
             "",
             extra={
-                "ip": "N/A",
+                "ip": request.client.host,
                 "status": 201,
                 "method": "POST",
                 "detail": f"Produto '{produto.nome}' criado com sucesso"
@@ -83,7 +84,7 @@ def criar_produto(produto: ProdutoCreate, db: Session = Depends(get_db)):
         logger_registro.error(
             "",
             extra={
-                "ip": "N/A",
+                "ip": request.client.host,
                 "status": 500,
                 "method": "POST",
                 "detail": f"Erro ao criar produto (SQLAlchemy): {str(e)}"
