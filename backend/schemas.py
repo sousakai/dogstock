@@ -4,7 +4,7 @@ from decimal import Decimal
 
 
 # Schema para criar produto (entrada da API)
-'''class ProdutoCreate(BaseModel):
+class ProdutoCreate(BaseModel):
     nome: str                     # nome obrigatório
     medida: str                   # ex: "kg", "unidade", etc.
     qtd_disponivel: Decimal       # estoque inicial
@@ -24,7 +24,7 @@ class ProdutoResponse(BaseModel):
     status: str
 
     class Config:
-        orm_mode = True  # permite retornar objetos SQLAlchemy direto'''
+        orm_mode = True  # permite retornar objetos SQLAlchemy direto
         
 class FornecedoresCreate(BaseModel):
     razao_social: str                     # nome obrigatório
@@ -40,4 +40,13 @@ class FornecedoresResponse(BaseModel):
     email: str       # estoque inicial
     cnpj: str           # limite mínimo
     status: str
-orm_mode = True  # permite retornar objetos SQLAlchemy direto'
+
+class CategoriaCreate(BaseModel):
+    descricao: str                     
+
+class CategoriaResponse(BaseModel):
+    id: int                       
+    descricao: str                     
+    
+    
+from_attributes = True  # permite retornar objetos SQLAlchemy direto'
