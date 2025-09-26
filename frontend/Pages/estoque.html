@@ -4,25 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estoque</title>
+  <title>The Dog Stock - O seu estoque</title>
   <link rel="stylesheet" href="../assets/css/estoque.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> <!--Icones-->
 </head>
 
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
-<div class="logo">
-  <img src="../assets/img/logo.png" alt="Logo DOG STOCK">
-  <h1>Dog Stock</h1 >
-</div>
+    <div class="logo">
+      <img src="../assets/img/logo.png" alt="Logo DOG STOCK">
+      <h1>THE DOG STOCK</h1>
+    </div>
     <nav>
-
-      <!-- Colocar outros icones  -->
       <ul>
-        <li><a href="#"><span>📦</span> Produtos</a></li>
-        <li><a href="#"><span>👥</span> Clientes</a></li>
-        <li><a href="#"><span>📜</span> Históricos</a></li>
-        <li><a href="#"><span>⚙️</span> Configurações</a></li>
+        <li><a href="./estoque.html"><i class="fa-solid fa-box"></i> Produtos</a></li>
+        <li><a href="#"><i class="fa-solid fa-users"></i> Clientes</a></li>
+        <li><a href="#"><i class="fa-solid fa-file-alt"></i> Históricos</a></li>
       </ul>
     </nav>
     <button id="btn-sair">Sair</button>
@@ -35,13 +33,22 @@
     </header>
 
     <section class="tabela-container">
+
+      <div class="tabela-header">
+        <input type="text" id="filtro" placeholder="🔍 Filtrar produtos...">
+        <div class="botoes-header">
+          <button id="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar</button>
+          <button id="btn-exportar"><i class="fa-solid fa-file-export"></i> Exportar</button>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Categoria</th>
+            <th data-col="title">Nome ⬍</th>
+            <th data-col="price">Preço ⬍</th>
+            <th data-col="stock">Estoque ⬍</th>
+            <th data-col="category">Categoria ⬍</th>
             <th>Status</th>
             <th>Ações</th>
           </tr>
@@ -52,6 +59,8 @@
     </section>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
   <script src="../assets/js/utils.js"></script>
   <script src="../assets/js/produtos.js"></script>
 </body>
