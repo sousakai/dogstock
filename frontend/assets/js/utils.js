@@ -26,3 +26,6 @@ function mostrarSessao(sessao) {
     document.getElementById('sessao-' + sessao).classList.add('active');
     event.target.classList.add('active');
 }
+
+
+

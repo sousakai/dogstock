@@ -101,3 +101,41 @@ document.getElementById("btn-exportar").addEventListener("click", () => {
 document.getElementById("btn-adicionar").addEventListener("click", () => {
   window.location.href = "novos-produtos.html"; 
 });
+
+
+//Função para vincular a pagina novos produtos com api 
+const form = document.getElementById("form-produto");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  //Capturando os dados do formulário 
+  const novoProduto = {
+    title: document.getElementById("nome-produto").value,
+    price: parseFloat.getElementById("preco").value,
+    stock: parseInt.getElementById("estoque").value,
+    category: document.getElementById("categoria").value,
+  };
+
+  try{
+     // Envia para a API DummyJSON apenas simulação
+    const response = await fetch ("https://dummyjson.com/products/add",{
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body:JSON.stringify(novoProduto)
+    });
+
+    const data = await response.json();
+    console.log("Produto adicionado :", data);
+
+    alert("Produto adicionado com sucesso!")
+
+    //Atualizar a tabela local
+    produtosGlobais.push(data);
+    preencherTabela(produtosGlobais);
+
+    form.reset();
+  } catch(error) {
+    console.log("Erro ao adicionar produto:", error);
+  }
+});
