@@ -1,17 +1,19 @@
-//Lógica dos produtos
+let produtosGlobais = []; // armazenar todos
+let ordemAsc = true; // controle de ordem
 
 const tabelaProdutos = document.getElementById('tabela-produtos');
 
-window.onload = function(){
-    fetchProdutos()
-}
+window.onload = () => {
+  fetchProdutos();
+};
 
+// Buscar produtos
 async function fetchProdutos() {
   try {
     const response = await fetch('https://dummyjson.com/products?limit=25');
     const data = await response.json();
-
-    preencherTabela(data.products); 
+    produtosGlobais = data.products; 
+    preencherTabela(produtosGlobais);
   } catch (error) {
     console.error('Erro ao carregar produtos:', error);
   }
@@ -20,7 +22,7 @@ async function fetchProdutos() {
 function preencherTabela(produtos) {
   tabelaProdutos.innerHTML = '';
 
-  if (produtos.length === 0) {
+  if (!produtos || produtos.length === 0) {
     const tr = document.createElement('tr');
     tr.innerHTML = `<td colspan="6">Nenhum produto encontrado</td>`;
     tabelaProdutos.appendChild(tr);
@@ -55,3 +57,47 @@ function preencherTabela(produtos) {
     tabelaProdutos.appendChild(tr);
   });
 }
+
+// Ordenação
+document.querySelectorAll("th[data-col]").forEach(th => {
+  th.addEventListener("click", () => {
+    const coluna = th.getAttribute("data-col");
+    ordemAsc = !ordemAsc;
+    produtosGlobais.sort((a, b) => {
+      if (a[coluna] < b[coluna]) return ordemAsc ? -1 : 1;
+      if (a[coluna] > b[coluna]) return ordemAsc ? 1 : -1;
+      return 0;
+    });
+    preencherTabela(produtosGlobais);
+  });
+});
+
+// Filtro
+document.getElementById("filtro").addEventListener("input", (e) => {
+  const termo = e.target.value.toLowerCase();
+  const filtrados = produtosGlobais.filter(p =>
+    p.title.toLowerCase().includes(termo) ||
+    p.category.toLowerCase().includes(termo)
+  );
+  preencherTabela(filtrados);
+});
+
+// Exportar em PDF arrumar a lógica
+document.getElementById("btn-exportar").addEventListener("click", () => {
+  new window.jspdf.jsPDF()
+    .autoTable({
+      head: [["Produto", "Preço", "Estoque", "Categoria"]],
+      body: produtosGlobais.map(p => [p.title, p.price, p.stock, p.category]),
+      startY: 20,
+      styles: { fontSize: 12 },
+      headStyles: { fillColor: [1, 92, 145] },
+    })
+    .text("Lista de Produtos", 14, 15)
+    .save("Produtos.pdf");
+});
+
+
+// Adicionar produto (placeholder)
+document.getElementById("btn-adicionar").addEventListener("click", () => {
+  window.location.href = "novos-produtos.html"; 
+});
