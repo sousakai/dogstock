@@ -1,0 +1,14 @@
+2025-10-07 23:37:47,487 - ERROR - IP: N/A - Método: POST - Status: 500 - Mensagem: Erro ao criar Tipo Movimentação (SQLAlchemy): (mysql.connector.errors.ProgrammingError) 1146 (42S02): Table 'dogstock.tipo_movimentacoes' doesn't exist
+[SQL: SELECT tipo_movimentacoes.id AS tipo_movimentacoes_id, tipo_movimentacoes.descricao AS tipo_movimentacoes_descricao, tipo_movimentacoes.tipo AS tipo_movimentacoes_tipo, tipo_movimentacoes.status AS tipo_movimentacoes_status 
+FROM tipo_movimentacoes 
+WHERE tipo_movimentacoes.descricao = %(descricao_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'descricao_1': 'Entrada - Compra de Fornecedor', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-07 23:55:33,388 - ERROR - IP: N/A - Método: POST - Status: 500 - Mensagem: Erro ao criar Tipo Movimentação (SQLAlchemy): (mysql.connector.errors.ProgrammingError) 1054 (42S22): Unknown column 'tipo_movimentacao.tipo' in 'field list'
+[SQL: SELECT tipo_movimentacao.id AS tipo_movimentacao_id, tipo_movimentacao.descricao AS tipo_movimentacao_descricao, tipo_movimentacao.tipo AS tipo_movimentacao_tipo, tipo_movimentacao.status AS tipo_movimentacao_status 
+FROM tipo_movimentacao 
+WHERE tipo_movimentacao.descricao = %(descricao_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'descricao_1': 'Entrada - Compra de fornecedor', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)

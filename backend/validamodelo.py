@@ -7,8 +7,8 @@ insp = inspect(engine)
 print("Tabelas:", insp.get_table_names())
 
 # Mostra as colunas da tabela forncedores
-print("\nColunas da tabela 'fornecedores':")
-for coluna in insp.get_columns("fornecedores"):
+print("\nColunas da tabela 'tipo_movimentacao':")
+for coluna in insp.get_columns("tipo_movimentacao"):
     print(
         f"Nome: {coluna['name']}, "
         f"Tipo: {coluna['type']}, "
