@@ -1,0 +1,75 @@
+@import url("./style.css");
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content.small {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* Texto de confirmação */
+.modal-content.small p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Botões do modal */
+.modal-content.small button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: 0.2s;
+    width: 100px;
+}
+
+#confirmDelete {
+    background-color: var(--error-4);
+    color:var(--cor-3);
+}
+
+#confirmDelete:hover {
+    background-color: #e53935;
+    color: var(--cor-3);
+}
+
+.modal-content.small .close {
+    background: transparent;
+    color: var(--nav-7);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-content.small .close:hover {
+    color: var(--nav-7);
+    transform: scale(1.05);
+}
+
+#confirmDelete:hover {
+    transform: scale(1.05);
+}

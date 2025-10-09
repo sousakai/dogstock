@@ -21,7 +21,7 @@
             <ul>
                 <li><a href="./estoque.html"><i class="fa-solid fa-box"></i> Produtos</a></li>
                 <li><a href="./cliente.html"><i class="fa-solid fa-users"></i> Fornecedores</a></li>
-                <li><a href="#"><i class="fa-solid fa-file-alt"></i> Históricos</a></li>    
+                <li><a href="#"><i class="fa-solid fa-file-alt"></i> Históricos</a></li>
             </ul>
         </nav>
         <button id="btn-sair">Sair</button>
@@ -50,7 +50,6 @@
                         <th data-col="contato">Contato ⬍</th>
                         <th data-col="email">E-mail ⬍</th>
                         <th data-col="cnpj">CNPJ ⬍</th>
-                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -59,6 +58,42 @@
 
         </section>
     </main>
+
+    <!-- Modal de Exclusão -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content small">
+            <span class="close">&times;</span>
+            <p>Tem certeza que deseja excluir este fornecedor?</p>
+            <button id="confirmDelete">Sim</button>
+            <button class="close">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Fornecedor</h2>
+            <form id="editForm">
+                <label for="editNome">Nome:</label>
+                <input type="text" id="editNome" name="nome" required>
+
+                <label for="editContato">Contato:</label>
+                <input type="text" id="editContato" name="contato" required>
+
+                <label for="editEmail">E-mail:</label>
+                <input type="email" id="editEmail" name="email" required>
+
+                <label for="editCnpj">CNPJ:</label>
+                <input type="text" id="editCnpj" name="cnpj" required>
+
+                <div class="botoes-modal">
+                    <button type="submit">Salvar</button>
+                    <button type="button" id="cancelEdit">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
