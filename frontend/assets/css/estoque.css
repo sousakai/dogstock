@@ -1,4 +1,6 @@
 @import url("./style.css");
+@import url("./excluir.css");
+@import url("./editar.css");
 
 body {
     display: flex;

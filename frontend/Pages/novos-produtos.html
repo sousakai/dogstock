@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Dog Stock - Novos Produtos</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!--Icones-->
     <link rel="stylesheet" href="../assets/css/novos-produtos.css">
 </head>
 
@@ -18,69 +19,94 @@
         <nav>
             <ul>
                 <li><a href="./estoque.html"><i class="fa-solid fa-box"></i> Produtos</a></li>
-                <li><a href="#"><i class="fa-solid fa-users"></i> Clientes</a></li>
+                <li><a href="./cliente.html"><i class="fa-solid fa-users"></i> Fornecedores</a></li>
                 <li><a href="#"><i class="fa-solid fa-file-alt"></i> Históricos</a></li>
             </ul>
         </nav>
         <button id="btn-sair">Sair</button>
     </aside>
 
-<main class="conteudo">
-    <header>
-        <h1>Novos Produtos</h1>
-    </header>
+    <main class="conteudo">
+        <header>
+            <h1>Novos Produtos</h1>
+        </header>
 
-    <!-- Menu de navegação -->
-    <div class="tabs">
-        <button class="tab-btn active" onclick="mostrarSessao('categoria')">Criar Categoria</button>
-        <button class="tab-btn" onclick="mostrarSessao('produto')">Criar Produto</button>
-    </div>
-
-    <section class="form-section">
-
-        <!-- Criar Categoria -->
-        <div class="card sessao active" id="sessao-categoria">
-            <h2>Criar Nova Categoria</h2>
-            <form id="form-categoria">
-                <label for="nome-categoria">Nome da Categoria:</label>
-                <input type="text" id="nome-categoria" name="nome-categoria" placeholder="Ex: Eletrônicos" required>
-                <button type="submit"><i class="fa-solid fa-plus"></i> Adicionar Categoria</button>
-            </form>
+        <!-- Menu de navegação -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="mostrarSessao('categoria')">Criar Categoria</button>
+            <button class="tab-btn" onclick="mostrarSessao('produto')">Criar Produto</button>
+            <button class="tab-btn" onclick="mostrarSessao('fornecedores')">Criar Fornecedores</button>
         </div>
 
-        <!-- Criar Produto -->
-        <div class="card sessao" id="sessao-produto">
-            <h2>Criar Novo Produto</h2>
-            <form id="form-produto">
-                <label for="nome-produto">Nome do Produto:</label>
-                <input type="text" id="nome-produto" name="nome-produto" placeholder="Ex: Camiseta DOG STOCK" required>
+        <section class="form-section">
 
-                <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco" step="0.01" placeholder="R$ 0,00" required>
+            <!-- Criar Categoria -->
+            <div class="card sessao active" id="sessao-categoria">
+                <h2>Criar Nova Categoria</h2>
+                <form id="form-categoria">
+                    <label for="nome-categoria">Nome da Categoria:</label>
+                    <input type="text" id="nome-categoria" name="nome-categoria" placeholder="Ex: Eletrônicos" required>
+                    <button type="submit"><i class="fa-solid fa-plus"></i> Adicionar Categoria</button>
+                </form>
+            </div>
 
-                <label for="estoque">Estoque:</label>
-                <input type="number" id="estoque" name="estoque" placeholder="Quantidade" required>
+            <!-- Criar Produto -->
+            <div class="card sessao" id="sessao-produto">
+                <h2>Criar Novo Produto</h2>
+                <form id="form-produto">
+                    <label for="nome-produto">Nome do Produto:</label>
+                    <input type="text" id="nome-produto" name="nome-produto" placeholder="Ex: Camiseta DOG STOCK"
+                        required>
 
-                <label for="categoria">Categoria:</label>
-                <select id="categoria" name="categoria" required>
-                    <option value="">Selecione...</option>
-                    <option value="beauty">Beleza</option>
-                    <option value="fragrances">Perfumes</option>
-                    <option value="furniture">Móveis</option>
-                </select>
+                    <label for="preco">Preço:</label>
+                    <input type="number" id="preco" name="preco" step="0.01" placeholder="R$ 0,00" required>
 
-                <label for="status">Status:</label>
-                <select id="status" name="status" required>
-                    <option value="ativo">Ativo</option>
-                    <option value="inativo">Inativo</option>
-                </select>
+                    <label for="estoque">Estoque:</label>
+                    <input type="number" id="estoque" name="estoque" placeholder="Quantidade" required>
 
-                <button type="submit"><i class="fa-solid fa-plus"></i> Adicionar Produto</button>
-            </form>
-        </div>
+                    <label for="categoria">Categoria:</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecione...</option>
+                        <option value="beauty">Beleza</option>
+                        <option value="fragrances">Perfumes</option>
+                        <option value="furniture">Móveis</option>
+                    </select>
 
-    </section>
-</main>
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+
+                    <button type="submit"><i class="fa-solid fa-plus"></i> Adicionar Produto</button>
+                </form>
+            </div>
+
+            <div class="card sessao" id="sessao-fornecedores">
+                <h2>Criar Novo Fornecedor</h2>
+                <form id="form-fornecedores">
+                    <label for="nome-fornecedor">Nome do Fornecedor:</label>
+                    <input type="text" id="nome-fornecedor" name="nome-fornecedor" placeholder="Ex: Fornecedor XYZ"
+                        required>
+
+                    <label for="contato-fornecedor">Contato:</label>
+                    <input type="tel" id="contato-fornecedor" name="contato-fornecedor" placeholder="11 99999-9999"
+                        required>
+
+                    <label for="email-fornecedor">E-mail:</label>
+                    <input type="email" id="email-fornecedor" name="email-fornecedor" placeholder="email@email.com"
+                        required>
+
+                    <label for="cnpj-fornecedor">CNPJ:</label>
+                    <input type="text" id="cnpj-fornecedor" name="cnpj-fornecedor" placeholder="00.000.000/0000-00"
+                        required>
+
+                    <button type="submit"><i class="fa-solid fa-plus"></i> Adicionar Fornecedor</button>
+                </form>
+            </div>
+
+        </section>
+    </main>
 
     <script src="../assets/js/utils.js"></script>
 </body>
