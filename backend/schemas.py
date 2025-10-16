@@ -2,6 +2,22 @@ from pydantic import BaseModel
 from typing import Optional
 from decimal import Decimal
 
+class TipoPagamentoCreate(BaseModel):
+    nome: str
+    status: Optional[str] = "ativo"
+
+
+
+
+
+class TipoPagamentoResponse(BaseModel):
+    id: int
+    nome: str
+    status: str
+
+    class Config:
+        orm_mode = True
+
 
 # Schema para criar produto (entrada da API)
 '''class ProdutoCreate(BaseModel):
@@ -11,7 +27,6 @@ from decimal import Decimal
     qtd_minima: Decimal           # limite mínimo
     categoria_id: int             # FK (tem que existir no banco)
     status: Optional[str] = "ativo"  # default "ativo" se não for informado
-
 
 # Schema para resposta da API (saída)
 class ProdutoResponse(BaseModel):
