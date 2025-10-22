@@ -95,10 +95,30 @@
         </div>
     </div>
 
+
+
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+            <span>Assistente de Estoque 🐶</span>
+            <button id="chatbot-toggle">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+        </div>
+
+        <div id="chatbot-body">
+            <div id="chatbox"></div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+                <button id="sendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <script src="../assets/js/utils.js"></script>
     <script src="../assets/js/fornecedores.js"></script>
+    <script src="../assets/js/chatbot.js"></script>
 </body>
 
 </html>
