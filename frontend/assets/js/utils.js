@@ -16,6 +16,13 @@ function verificarLogin() {
   }
 }
 
+document.getElementById("btn-sair").addEventListener("click", logout);
+
+function logout() {
+  localStorage.removeItem("logado");
+  window.location.href = "../index.html";
+}
+
 //Funções para deixar as sessões de criar produtos páginaveis
 function mostrarSessao(sessao) {
     // Esconde todas
@@ -46,3 +53,5 @@ document.getElementById("filtro").addEventListener("input", (e) => {
 document.getElementById("btn-adicionar").addEventListener("click", () => {
   window.location.href = "novos-produtos.html"; 
 });
+
+

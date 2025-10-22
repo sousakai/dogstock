@@ -29,7 +29,7 @@ app.include_router(con_tipoMovimentacao.router)
 app.include_router(reg_fornecedores.router)
 
 # caminho para ser hosteado (arquivo testes.html, evita conflito com index.html)
-teste_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "testes.html")
+teste_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "index.html")
 
 # busca o end point do testes.html
 @app.get("/")
