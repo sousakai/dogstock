@@ -50,3 +50,27 @@ class CategoriaResponse(BaseModel):
     
     
 from_attributes = True  # permite retornar objetos SQLAlchemy direto'
+
+class MovimentacoesCreate(BaseModel):
+    produto_id: int
+    quantidade: Decimal
+    data: str
+    tipo_mov_id: int
+    fornecedor_id: Optional[int] = None
+    tipo_pag_id: Optional[int] = None
+    preco_compra: Optional[Decimal] = None
+    preco_venda: Optional[Decimal] = None
+    
+class MovimentacoesResponse(BaseModel):
+    id: int
+    produto_id: int
+    quantidade: Decimal
+    data: str
+    tipo_mov_id: int
+    fornecedor_id: Optional[int] = None
+    tipo_pag_id: Optional[int] = None
+    preco_compra: Optional[Decimal] = None
+    preco_venda: Optional[Decimal] = None
+
+    class Config:
+        orm_mode = True
