@@ -3,12 +3,6 @@ from sqlalchemy.orm import relationship
 from database import Base
 
 
-class TipoPagamento(Base):
-    __tablename__ = "tipo_pagamento"
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    nome = Column(String(100), nullable=False, unique=True)
-    status = Column(String(50), nullable=False, default="ativo")
 
 
 # aqui, o models serve para "validar os dados" antes de enviar pro banco. é como um guia de como os dados devem ser
@@ -36,3 +30,11 @@ class Fornecedores(Base):
     email = Column(String(255), nullable=True, unique=True)
     cnpj = Column(String(255), nullable=False, unique=True)
     status = Column(String(50), nullable=False, default="ativo")
+
+
+class TipoPagamento(Base):
+    __tablename__ = "tipo_pagamento"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    descricao = Column(String(255), nullable=False, unique=True)  
+    status = Column(String(50), nullable=False, default="ativo")  

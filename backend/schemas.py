@@ -2,21 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 from decimal import Decimal
 
-class TipoPagamentoCreate(BaseModel):
-    nome: str
-    status: Optional[str] = "ativo"
 
-
-
-
-
-class TipoPagamentoResponse(BaseModel):
-    id: int
-    nome: str
-    status: str
-
-    class Config:
-        orm_mode = True
 
 
 # Schema para criar produto (entrada da API)
@@ -56,3 +42,18 @@ class FornecedoresResponse(BaseModel):
     cnpj: str           # limite mínimo
     status: str
 orm_mode = True  # permite retornar objetos SQLAlchemy direto'
+
+
+
+class TipoPagamentoCreate(BaseModel):
+    nome: str
+    status: Optional[str] = "ativo"
+
+
+class TipoPagamentoResponse(BaseModel):
+    id: int
+    nome: str
+    status: str
+
+    class Config:
+        orm_mode = True
