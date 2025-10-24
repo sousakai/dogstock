@@ -4,25 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estoque</title>
+  <title>The Dog Stock - O seu estoque</title>
   <link rel="stylesheet" href="../assets/css/estoque.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> <!--Icones-->
 </head>
 
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
-<div class="logo">
-  <img src="../assets/img/logo.png" alt="Logo DOG STOCK">
-  <h1>Dog Stock</h1 >
-</div>
+    <div class="logo">
+      <img src="../assets/img/logo.png" alt="Logo DOG STOCK">
+      <h1>THE DOG STOCK</h1>
+    </div>
     <nav>
-
-      <!-- Colocar outros icones  -->
       <ul>
-        <li><a href="#"><span>📦</span> Produtos</a></li>
-        <li><a href="#"><span>👥</span> Clientes</a></li>
-        <li><a href="#"><span>📜</span> Históricos</a></li>
-        <li><a href="#"><span>⚙️</span> Configurações</a></li>
+        <li><a href="./estoque.html"><i class="fa-solid fa-box"></i> Produtos</a></li>
+        <li><a href="./cliente.html"><i class="fa-solid fa-users"></i> Fornecedores</a></li>
+        <li><a href="#"><i class="fa-solid fa-file-alt"></i> Históricos</a></li>
       </ul>
     </nav>
     <button id="btn-sair">Sair</button>
@@ -35,13 +33,22 @@
     </header>
 
     <section class="tabela-container">
+
+      <div class="tabela-header">
+        <input type="text" id="filtro" placeholder="🔍 Filtrar produtos...">
+        <div class="botoes-header">
+          <button id="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar</button>
+          <button id="btn-exportar"><i class="fa-solid fa-file-export"></i> Exportar</button>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Categoria</th>
+            <th data-col="title">Nome ⬍</th>
+            <th data-col="price">Preço ⬍</th>
+            <th data-col="stock">Estoque ⬍</th>
+            <th data-col="category">Categoria ⬍</th>
             <th>Status</th>
             <th>Ações</th>
           </tr>
@@ -52,6 +59,51 @@
     </section>
   </main>
 
+  <!-- Modal feito para realizar a edição de produtos -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Editar Produto</h2>
+      <form id="editForm">
+        <label for="editNome">Nome:</label>
+        <input type="text" id="editNome" name="nome" required>
+
+        <label for="editPreco">Preço:</label>
+        <input type="number" id="editPreco" name="preco" required>
+
+        <label for="editEstoque">Estoque:</label>
+        <input type="number" id="editEstoque" name="estoque" required>
+
+        <label for="editCategoria">Categoria:</label>
+        <select id="editCategoria" name="categoria" required>
+          <option value="">Selecione...</option>
+          <option value="beauty">Beleza</option>
+          <option value="fragrances">Perfumes</option>
+          <option value="furniture">Móveis</option>
+        </select>
+
+        <div class="botoes-modal">
+          <button type="submit">Salvar</button>
+          <button type="button" id="cancelEdit">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal feito para realizar a exclusão de produtos -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content small">
+      <span class="close">&times;</span>
+      <p>Tem certeza que deseja excluir este produto?</p>
+      <div class="modal-buttons">
+        <button id="confirmDelete">Sim</button>
+        <button class="close">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
   <script src="../assets/js/utils.js"></script>
   <script src="../assets/js/produtos.js"></script>
 </body>

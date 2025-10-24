@@ -37,4 +37,10 @@ class TipoPagamento(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     descricao = Column(String(255), nullable=False, unique=True)  
-    status = Column(String(50), nullable=False, default="ativo")  
+    status = Column(String(50), nullable=False, default="ativo") 
+    
+class TipoMovimentacao(Base):
+    __tablename__ = "tipo_movimentacao"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    descricao = Column(String(255), nullable=False, unique=True)

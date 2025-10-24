@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional
 from decimal import Decimal
-
+from pydantic import BaseModel
+from typing import Optional
 
 
 
@@ -26,13 +27,15 @@ class ProdutoResponse(BaseModel):
 
     class Config:
         orm_mode = True  # permite retornar objetos SQLAlchemy direto'''
-        
+
+
 class FornecedoresCreate(BaseModel):
     razao_social: str                     # nome obrigatório
     contato: str                   # ex: "kg", "unidade", etc.
     email: str       # estoque inicial
     cnpj: str           # limite mínimo
     status: Optional[str] = "ativo"  # default "ativo" se não for informado
+
 
 class FornecedoresResponse(BaseModel):
     id: int                       # vem do banco
@@ -54,6 +57,19 @@ class TipoPagamentoResponse(BaseModel):
     id: int
     nome: str
     status: str
+
+    class Config:
+        orm_mode = True  # permite retornar objetos SQLAlchemy direto
+
+
+class TipoMovimentacaoCreateSchema(BaseModel):
+    descricao: str
+
+
+# Schema de resposta (saída de dados)
+class TipoMovimentacaoResponseSchema(BaseModel):
+    id: int
+    descricao: str
 
     class Config:
         orm_mode = True
