@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Numeric, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base
 
-#aqui, o models serve para "validar os dados" antes de enviar pro banco. é como um guia de como os dados devem ser
+# aqui, o models serve para "validar os dados" antes de enviar pro banco. é como um guia de como os dados devem ser
 """class Produto(Base):
     __tablename__ = "produtos"
 
@@ -15,7 +15,8 @@ from database import Base
     status = Column(String(50), nullable=False, default="ativo")
     
     categoria = relationship("Categoria", back_populates="produtos")"""
-    
+
+
 class Fornecedores(Base):
     __tablename__ = "fornecedores"
 
@@ -25,4 +26,10 @@ class Fornecedores(Base):
     email = Column(String(255), nullable=True, unique=True)
     cnpj = Column(String(255), nullable=False, unique=True)
     status = Column(String(50), nullable=False, default="ativo")
-    
+
+
+class TipoMovimentacao(Base):
+    __tablename__ = "tipo_movimentacao"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    descricao = Column(String(255), nullable=False, unique=True)

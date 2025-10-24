@@ -1,5 +1,4 @@
 fastapi==0.111.0
-uvicorn==0.23.0
 sqlalchemy==2.0.23
 pymysql==1.1.0          # driver MySQL equivalente ao psycopg2
 python-dotenv==1.0.0
