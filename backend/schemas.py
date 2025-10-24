@@ -4,6 +4,8 @@ from decimal import Decimal
 from pydantic import BaseModel
 from typing import Optional
 
+
+
 # Schema para criar produto (entrada da API)
 '''class ProdutoCreate(BaseModel):
     nome: str                     # nome obrigatório
@@ -12,7 +14,6 @@ from typing import Optional
     qtd_minima: Decimal           # limite mínimo
     categoria_id: int             # FK (tem que existir no banco)
     status: Optional[str] = "ativo"  # default "ativo" se não for informado
-
 
 # Schema para resposta da API (saída)
 class ProdutoResponse(BaseModel):
@@ -42,6 +43,19 @@ class FornecedoresResponse(BaseModel):
     contato: str                   # ex: "kg", "unidade", etc.
     email: str       # estoque inicial
     cnpj: str           # limite mínimo
+    status: str
+orm_mode = True  # permite retornar objetos SQLAlchemy direto'
+
+
+
+class TipoPagamentoCreate(BaseModel):
+    nome: str
+    status: Optional[str] = "ativo"
+
+
+class TipoPagamentoResponse(BaseModel):
+    id: int
+    nome: str
     status: str
 
     class Config:

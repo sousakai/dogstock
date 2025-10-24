@@ -15,6 +15,8 @@ from routers.consulta import tipoMovimentacao as con_tipoMovimentacao
 from routers.registro import fornecedores as reg_fornecedores
 from routers.registro import tipomovimentacao as reg_tipoMovimentacao
 
+from routers.registro.tipoPagamento import router as registro_tipo_pagamento_router
+
 import os
 
 app = FastAPI()
@@ -28,6 +30,8 @@ app.include_router(con_fornecedores.router)
 app.include_router(con_tipoPagamento.router)
 app.include_router(con_tipoMovimentacao.router)
 app.include_router(reg_fornecedores.router)
+app.include_router(registro_tipo_pagamento_router)
+
 app.include_router(reg_tipoMovimentacao.router)
 
 # caminho para ser hosteado (arquivo testes.html, evita conflito com index.html)
