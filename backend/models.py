@@ -25,6 +25,14 @@ class Fornecedores(Base):
     email = Column(String(255), nullable=True, unique=True)
     cnpj = Column(String(255), nullable=False, unique=True)
     status = Column(String(50), nullable=False, default="ativo")
+
+
+class TipoPagamento(Base):
+    __tablename__ = "tipo_pagamento"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    descricao = Column(String(255), nullable=False, unique=True)  
+    status = Column(String(50), nullable=False, default="ativo") 
     
     
 class Categoria(Base):
@@ -52,3 +60,8 @@ class Movimentacoes(Base):
     fornecedor = relationship("Fornecedores")
     tipo_pagamento = relationship("TipoPagamento")
   
+class TipoMovimentacao(Base):
+    __tablename__ = "tipo_movimentacao"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    descricao = Column(String(255), nullable=False, unique=True)
