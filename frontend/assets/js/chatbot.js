@@ -14,7 +14,6 @@ toggleBtn.onclick = () => {
     : "fa-solid fa-minus";
 };
 
-// Exibe mensagem no chat
 function addMessage(sender, text) {
   const div = document.createElement("div");
   div.className = sender === "user" ? "msg user" : "msg bot";
@@ -24,8 +23,6 @@ function addMessage(sender, text) {
 }
 
 
-
-// --- PRODUTOS ---
 async function carregarProdutosViaChat() {
   addMessage("bot", "🔄 Carregando produtos...");
 
@@ -34,7 +31,6 @@ async function carregarProdutosViaChat() {
     const data = await response.json();
     window.produtosGlobais = data.products;
 
-    // 🔹 salva no localStorage
     localStorage.setItem("produtosGlobais", JSON.stringify(produtosGlobais));
 
     if (typeof preencherTabela === "function") {
@@ -49,7 +45,6 @@ async function carregarProdutosViaChat() {
 }
 
 
-// --- FORNECEDORES ---
 async function fetchFornecedores() {
   addMessage("bot", "🔄 Carregando fornecedores locais...");
   await new Promise((r) => setTimeout(r, 500));
@@ -61,11 +56,9 @@ async function fetchFornecedores() {
 }
 
 
-// --- PROCESSAMENTO DE COMANDOS ---
 async function processCommand(text) {
   const command = text.toLowerCase().trim();
 
-  // 🔹 PRODUTOS
 
    if (command.startsWith("buscar produto")) {
     const termo = command.replace("buscar produto", "").trim();
@@ -102,7 +95,6 @@ async function processCommand(text) {
       addMessage("bot", "Tudo certo! Nenhum produto com estoque crítico.");
     }
 
-  // 🔹 FORNECEDORES
   } else if (command.includes("listar fornecedores")) {
     await fetchFornecedores();
     fornecedoresGlobais.forEach((f) =>
@@ -137,7 +129,6 @@ async function processCommand(text) {
       addMessage("bot", "Nenhum fornecedor encontrado com esse termo.");
     }
 
-  // 🔹 AJUDA
   } else if (command.includes("ajuda")) {
     addMessage(
       "bot",
@@ -154,7 +145,6 @@ async function processCommand(text) {
   }
 }
 
-// Envio de mensagem
 sendBtn.onclick = () => {
   const text = input.value.trim();
   if (!text) return;
