@@ -2,7 +2,10 @@
 
 Repositório do projeto de Gerenciamento de Estoque desenvolvido para a disciplina de Laboratório de Banco de Dados Avançado (2025/2), na Universidade Cidade de São Paulo (UNICID). 
 
-**Estado atual:** roda apenas localmente, focado no teste de conexão, leitura e escrita com o banco de dados remoto.
+**Objetivo:**
+A meta da aplicação é oferecer soluções de gestão de estoque, implementando ferramentas de business intelligence para apresentar insights valiosos para a organização. O foco é apoiar pequenas e médias empresas.
+
+**Estado atual:** A aplicação roda com chatbot incluso para pesquisa automatizada de informações, utilizando chamadas de APIs através do Front-end para cadastrar, editar e deletar produtos, movimentações e fornecedores
 
 **Equipe de desenvolvimento:**
 |Nome |Atuação |
@@ -18,15 +21,15 @@ Repositório do projeto de Gerenciamento de Estoque desenvolvido para a discipli
 
 ### Como rodar:
 
-Atualmente, o repositório conta com uma página index.html, que faz requisições para a API Python (FastApi), com o objetivo de testar a conexão com o banco de dados MySQL.
+Atualmente, o repositório conta com uma página index.html que permite o login com credenciais "admin" e "admin123". A partir daqui, é possível navegar entre as partes do projeto.
 
-Para executar o teste, é necessário possuir o .env.leitura (com as credencias de leitura) e o .env.escrita (com credenciais de escrita). Após realizar o download do repositório, é necessário criar um "venv" e instalar o Uvicorn e todas as dependências necessárias.
+Para executar o teste no banco da aplicação (hospedado em AWS), é necessário possuir o .env.leitura (com as credencias de leitura) e o .env.escrita (com credenciais de escrita). Após realizar o download do repositório, é necessário criar um "venv" e instalar o Uvicorn e todas as dependências necessárias.
 
 Com tudo preparado, execute o comando: 
 
 >**uvicorn main:app --host 0.0.0.0 --port 8000**
 
-para hostear a API localmente.
+para hostear as APIs localmente.
 
 Importante mencionar que o acesso deve ser feito ao "link" localhost, se acessar direto pelo arquivo HTML, o teste será mal sucedido.
 
