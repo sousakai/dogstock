@@ -20,6 +20,8 @@ def create_db_session(env_type: str):
     return SessionLocal, ENV_TYPE
 
 @router.get("/")
+
+
 def listar_fornecedores(request: Request):  # request necessário para pegar IP e método
     SessionLocal, ENV_TYPE = create_db_session("leitura")
     db = SessionLocal()

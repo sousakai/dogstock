@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Request
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from database import get_db  # função que retorna a sessão do SQLAlchemy
@@ -19,10 +19,10 @@ logger_registro = get_router_logger("fornecedores", registro=True)
 
 
 # =========================
-# ROTA DE CRIAÇÃO DE fornecedor
+# ROTA DE CRIAÇÃO DE FORNECEDOR
 # =========================
 @router.post("/", response_model=FornecedoresResponse)
-def criar_fornecedor(fornecedor: FornecedoresCreate, db: Session = Depends(get_db)):
+def criar_fornecedor(fornecedor: FornecedoresCreate, request: Request, db: Session = Depends(get_db)):
     """
     Cria um novo fornecedor na tabela 'fornecedors'.
     
@@ -38,9 +38,9 @@ def criar_fornecedor(fornecedor: FornecedoresCreate, db: Session = Depends(get_d
         if existente:
             # Log de aviso caso fornecedor já exista
             logger_registro.warning(
-                "",
+                "Tentativa de criar fornecedor existente",
                 extra={
-                    "ip": "N/A",  # IP não disponível aqui
+                    "ip": request.client.host,
                     "status": 400,
                     "method": "POST",
                     "detail": f"Falha ao criar fornecedor: fornecedor '{fornecedor.razao_social}' já existe"
@@ -50,11 +50,11 @@ def criar_fornecedor(fornecedor: FornecedoresCreate, db: Session = Depends(get_d
 
         # 2️. Criação do objeto SQLAlchemy
         novo_fornecedor = Fornecedores(
-        razao_social=fornecedor.razao_social,
-        contato=fornecedor.contato,
-        email=fornecedor.email,
-        cnpj=fornecedor.cnpj,
-        status=fornecedor.status
+            razao_social=fornecedor.razao_social,
+            contato=fornecedor.contato,
+            email=fornecedor.email,
+            cnpj=fornecedor.cnpj,
+            status=fornecedor.status
         )
 
         # 3️. Adiciona e confirma no banco
@@ -64,12 +64,12 @@ def criar_fornecedor(fornecedor: FornecedoresCreate, db: Session = Depends(get_d
 
         # Log de sucesso
         logger_registro.info(
-            "",
+            "Fornecedor criado com sucesso",
             extra={
-                "ip": "N/A",
+                "ip": request.client.host,
                 "status": 201,
                 "method": "POST",
-                "detail": f"fornecedor '{fornecedor.razao_social}' criado com sucesso"
+                "detail": f"Fornecedor '{novo_fornecedor.razao_social}' criado com sucesso"
             }
         )
 
@@ -80,9 +80,9 @@ def criar_fornecedor(fornecedor: FornecedoresCreate, db: Session = Depends(get_d
         # Desfaz a transação em caso de erro de banco
         db.rollback()
         logger_registro.error(
-            "",
+            "Erro ao criar fornecedor no banco",
             extra={
-                "ip": "N/A",
+                "ip": request.client.host,
                 "status": 500,
                 "method": "POST",
                 "detail": f"Erro ao criar fornecedor (SQLAlchemy): {str(e)}"
@@ -93,9 +93,9 @@ def criar_fornecedor(fornecedor: FornecedoresCreate, db: Session = Depends(get_d
     except Exception as e:
         # Captura outros erros inesperados
         logger_registro.error(
-            "",
+            "Erro inesperado ao criar fornecedor",
             extra={
-                "ip": "N/A",
+                "ip": request.client.host,
                 "status": 500,
                 "method": "POST",
                 "detail": f"Erro inesperado ao criar fornecedor: {str(e)}"
