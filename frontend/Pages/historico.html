@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Dog Stock - O seu estoque</title>
-    <link rel="stylesheet" href="../assets/css/estoque.css">
+    <title>The Dog Stock - Histórico de Saídas</title>
+    <link rel="stylesheet" href="../assets/css/historico.css">
     <link rel="icon" type="image/png" href="../assets/img/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!--Icones-->
 </head>
 
 <body>
@@ -22,81 +21,73 @@
             <ul>
                 <li><a href="./estoque.html"><i class="fa-solid fa-box"></i> Produtos</a></li>
                 <li><a href="./cliente.html"><i class="fa-solid fa-users"></i> Fornecedores</a></li>
-                <li><a href="./historico.html"><i class="fa-solid fa-file-alt"></i> Históricos</a></li>
+                <li><a href="./historico.html" class="ativo"><i class="fa-solid fa-file-alt"></i> Históricos</a></li>
             </ul>
         </nav>
         <button id="btn-sair">Sair</button>
     </aside>
 
-
     <main class="conteudo">
         <header>
-            <h1>Fornecedores</h1>
+            <h1>Histórico de Saídas</h1>
         </header>
 
         <section class="tabela-container">
-
             <div class="tabela-header">
-                <input type="text" id="filtro" placeholder="🔍 Filtrar fornecedores...">
                 <div class="botoes-header">
-                    <button id="btn-adicionar"><i class="fa-solid fa-plus"></i> Adicionar</button>
-                    <button id="btn-exportar"><i class="fa-solid fa-file-export"></i> Exportar</button>
+                    <button id="btnManual" class="btn adicionar"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    <button id="btn-exportar" class="btn exportar"><i class="fa-solid fa-file-export"></i>
+                        Exportar</button>
                 </div>
             </div>
 
             <table>
                 <thead>
                     <tr>
-                        <th data-col="nome">Nome ⬍</th>
-                        <th data-col="contato">Contato ⬍</th>
-                        <th data-col="email">E-mail ⬍</th>
-                        <th data-col="cnpj">CNPJ ⬍</th>
-                        <th>Ações</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Tipo de Pagamento</th>
+                        <th>Data de Saída</th>
+                        <th>Observações</th>
                     </tr>
                 </thead>
-                <tbody id="tabela-fornecedores"></tbody>
+                <tbody id="tabela-historico">
+                </tbody>
             </table>
-
         </section>
     </main>
 
-    <!-- Modal de Exclusão -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content small">
-            <span class="close">&times;</span>
-            <p>Tem certeza que deseja excluir este fornecedor?</p>
-            <button id="confirmDelete">Sim</button>
-            <button class="close">Cancelar</button>
-        </div>
-    </div>
-
-    <!-- Modal de Edição -->
-    <div id="editModal" class="modal">
+    <div id="manualModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Editar Fornecedor</h2>
-            <form id="editForm">
-                <label for="editNome">Nome:</label>
-                <input type="text" id="editNome" name="nome" required>
+            <h2>Adicionar Saída Manual</h2>
+            <form id="manualForm">
+                <label for="manualProduto">Produto:</label>
+                <select id="manualProduto" name="produto" required>
+                    <option value="">Selecione um produto...</option>
+                </select>
 
-                <label for="editContato">Contato:</label>
-                <input type="text" id="editContato" name="contato" required>
+                <label for="manualData">Data:</label>
+                <input type="date" id="manualData" name="data" required>
 
-                <label for="editEmail">E-mail:</label>
-                <input type="email" id="editEmail" name="email" required>
+                <label for="manualPagamento">Tipo de Pagamento:</label>
+                <select id="manualPagamento" name="pagamento" required>
+                    <option value="">Selecione...</option>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="cartao">Cartão</option>
+                    <option value="pix">PIX</option>
+                </select>
 
-                <label for="editCnpj">CNPJ:</label>
-                <input type="text" id="editCnpj" name="cnpj" required>
+                <label for="manualQuantidade">Quantidade:</label>
+                <input type="number" id="manualQuantidade" name="quantidade" required>
 
                 <div class="botoes-modal">
-                    <button type="submit">Salvar</button>
-                    <button type="button" id="cancelEdit">Cancelar</button>
+                    <button type="submit" class="btn confirmar">Adicionar</button>
+                    <button type="button" id="cancelManual" class="btn cancelar">Cancelar</button>
                 </div>
             </form>
         </div>
     </div>
-
-
 
     <div id="chatbot-container">
         <div id="chatbot-header">
@@ -115,11 +106,12 @@
         </div>
     </div>
 
+    <!-- Bibliotecas e JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-    <script src="../assets/js/utils.js"></script>
-    <script src="../assets/js/fornecedores.js"></script>
+    <script src="../assets/js/historico.js"></script>
     <script src="../assets/js/chatbot.js"></script>
+    <script src="../assets/js/utils.js"></script>
 </body>
 
 </html>
