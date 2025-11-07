@@ -1,45 +1,90 @@
-let fornecedoresGlobais = [
-  {
-    id: 1,
-    nome: "Fornecedor A",
-    contato: "11 99999-1111",
-    email: "a@email.com",
-    cnpj: "00.000.000/0001-11",
-  },
-  {
-    id: 2,
-    nome: "Fornecedor B",
-    contato: "11 99999-2222",
-    email: "b@email.com",
-    cnpj: "00.000.000/0001-22",
-  },
-  {
-    id: 3,
-    nome: "Fornecedor C",
-    contato: "11 99999-3333",
-    email: "c@email.com",
-    cnpj: "00.000.000/0001-33",
-  },
-];
+// URL base da API
+const API_URL = 'http://localhost:8000'; // Ajuste a porta se necessário
 
+let fornecedoresGlobais = [];
 let ordemAsc = true;
-
-// Variável para armazenar o ID do fornecedor a ser excluído
 let fornecedorIdParaExcluir = null;
-
-// Variável para armazenar o fornecedor em edição
 let fornecedorAtualEdicao = null;
 
-// Referências ao modal de exclusão
+// Referências aos modais
 const deleteModal = document.getElementById("deleteModal");
 const deleteCloseBtns = deleteModal.querySelectorAll(".close");
 const confirmDelete = document.getElementById("confirmDelete");
 
-// Referências ao modal de edição
 const editModal = document.getElementById("editModal");
 const editClose = editModal.querySelectorAll(".close");
 const editForm = document.getElementById("editForm");
 const cancelEdit = document.getElementById("cancelEdit");
+
+// ========== FUNÇÕES DE API ==========
+
+// Buscar todos os fornecedores
+async function buscarFornecedores() {
+  try {
+    const response = await fetch(`${API_URL}/consulta/fornecedores/`);
+    if (!response.ok) throw new Error('Erro ao buscar fornecedores');
+    const data = await response.json();
+    fornecedoresGlobais = data;
+    carregarTabela(fornecedoresGlobais);
+  } catch (error) {
+    console.error('Erro:', error);
+    alert('Erro ao carregar fornecedores. Verifique se a API está rodando.');
+  }
+}
+
+// Criar novo fornecedor
+async function criarFornecedor(fornecedor) {
+  try {
+    const response = await fetch(`${API_URL}/registro/fornecedores/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fornecedor),
+    });
+    if (!response.ok) throw new Error('Erro ao criar fornecedor');
+    await buscarFornecedores();
+    return true;
+  } catch (error) {
+    console.error('Erro:', error);
+    alert('Erro ao criar fornecedor');
+    return false;
+  }
+}
+
+// Atualizar fornecedor
+async function atualizarFornecedor(id, fornecedor) {
+  try {
+    const response = await fetch(`${API_URL}/registro/fornecedores/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fornecedor),
+    });
+    if (!response.ok) throw new Error('Erro ao atualizar fornecedor');
+    await buscarFornecedores();
+    return true;
+  } catch (error) {
+    console.error('Erro:', error);
+    alert('Erro ao atualizar fornecedor');
+    return false;
+  }
+}
+
+// Excluir fornecedor
+async function deletarFornecedor(id) {
+  try {
+    const response = await fetch(`${API_URL}/registro/fornecedores/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Erro ao excluir fornecedor');
+    await buscarFornecedores();
+    return true;
+  } catch (error) {
+    console.error('Erro:', error);
+    alert('Erro ao excluir fornecedor');
+    return false;
+  }
+}
+
+// ========== FUNÇÕES DE INTERFACE ==========
 
 function carregarTabela(dados) {
   const tbody = document.getElementById("tabela-fornecedores");
@@ -55,7 +100,7 @@ function carregarTabela(dados) {
   dados.forEach((f) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${f.nome}</td>
+      <td>${f.razao_social}</td>
       <td>${f.contato}</td>
       <td>${f.email}</td>
       <td>${f.cnpj}</td>
@@ -79,15 +124,15 @@ function abrirModalExclusao(id) {
 }
 
 // Evento para confirmar a exclusão
-confirmDelete.onclick = () => {
-  fornecedoresGlobais = fornecedoresGlobais.filter(
-    (f) => f.id !== fornecedorIdParaExcluir
-  );
-  carregarTabela(fornecedoresGlobais);
-  deleteModal.style.display = "none";
+confirmDelete.onclick = async () => {
+  const sucesso = await deletarFornecedor(fornecedorIdParaExcluir);
+  if (sucesso) {
+    deleteModal.style.display = "none";
+    alert("Fornecedor excluido com sucesso")
+  }
 };
 
-// Fechar o modal de exclusão ao clicar nos botões de fechar ou "Cancelar"
+// Fechar o modal de exclusão
 deleteCloseBtns.forEach((btn) => {
   btn.onclick = () => {
     deleteModal.style.display = "none";
@@ -107,20 +152,21 @@ function abrirModalEdicao(fornecedorId) {
 
   editModal.style.display = "block";
 
-  document.getElementById("editNome").value = fornecedorAtualEdicao.nome;
+  document.getElementById("editRazaoSocial").value = fornecedorAtualEdicao.razao_social;
   document.getElementById("editContato").value = fornecedorAtualEdicao.contato;
   document.getElementById("editEmail").value = fornecedorAtualEdicao.email;
   document.getElementById("editCnpj").value = fornecedorAtualEdicao.cnpj;
 
-  editForm.onsubmit = (e) => {
+  editForm.onsubmit = async (e) => {
     e.preventDefault();
 
-    const nome = document.getElementById("editNome").value.trim();
+    const razao_social = document.getElementById("editRazaoSocial").value.trim();
     const contato = document.getElementById("editContato").value.trim();
     const email = document.getElementById("editEmail").value.trim();
     const cnpj = document.getElementById("editCnpj").value.trim();
+    const status = fornecedorAtualEdicao.status || "ativo";
 
-    if (!nome || !contato || !email || !cnpj) {
+    if (!razao_social || !contato || !email || !cnpj) {
       alert("Todos os campos devem ser preenchidos!");
       return;
     }
@@ -133,17 +179,16 @@ function abrirModalEdicao(fornecedorId) {
       return;
     }
 
-    fornecedorAtualEdicao.nome = nome;
-    fornecedorAtualEdicao.contato = contato;
-    fornecedorAtualEdicao.email = email;
-    fornecedorAtualEdicao.cnpj = cnpj;
-
-    carregarTabela(fornecedoresGlobais);
-    editModal.style.display = "none";
+    const fornecedorAtualizado = { razao_social, contato, email, cnpj, status};
+    const sucesso = await atualizarFornecedor(fornecedorAtualEdicao.id, fornecedorAtualizado);
+    
+    if (sucesso) {
+      editModal.style.display = "none";
+    }
   };
 }
 
-// Fechar o modal de edição ao clicar no "×" ou "Cancelar"
+// Fechar o modal de edição
 editClose.forEach((btn) => {
   btn.onclick = () => {
     editModal.style.display = "none";
@@ -167,7 +212,7 @@ document.getElementById("filtro").addEventListener("input", (e) => {
   const termo = e.target.value.toLowerCase();
   const filtrados = fornecedoresGlobais.filter(
     (f) =>
-      f.nome.toLowerCase().includes(termo) ||
+      f.razao_social.toLowerCase().includes(termo) ||
       f.contato.toLowerCase().includes(termo) ||
       f.email.toLowerCase().includes(termo) ||
       f.cnpj.toLowerCase().includes(termo)
@@ -205,7 +250,7 @@ document.getElementById("btn-exportar").addEventListener("click", () => {
     .autoTable({
       head: [["Fornecedor", "Contato", "Email", "CNPJ"]],
       body: fornecedoresGlobais.map((f) => [
-        f.nome,
+        f.razao_social,
         f.contato,
         f.email,
         f.cnpj,
@@ -218,5 +263,7 @@ document.getElementById("btn-exportar").addEventListener("click", () => {
     .save("Fornecedores.pdf");
 });
 
-// Inicializa tabela
-carregarTabela(fornecedoresGlobais);
+// ========== INICIALIZAÇÃO ==========
+window.addEventListener('DOMContentLoaded', () => {
+  buscarFornecedores();
+});

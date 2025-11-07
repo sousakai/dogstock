@@ -1,17 +1,19 @@
 from pydantic import BaseModel
 from typing import Optional
 from decimal import Decimal
+from pydantic import BaseModel
+from typing import Optional
+
 
 
 # Schema para criar produto (entrada da API)
-'''class ProdutoCreate(BaseModel):
+class ProdutoCreate(BaseModel):
     nome: str                     # nome obrigatório
     medida: str                   # ex: "kg", "unidade", etc.
     qtd_disponivel: Decimal       # estoque inicial
     qtd_minima: Decimal           # limite mínimo
     categoria_id: int             # FK (tem que existir no banco)
     status: Optional[str] = "ativo"  # default "ativo" se não for informado
-
 
 # Schema para resposta da API (saída)
 class ProdutoResponse(BaseModel):
@@ -24,7 +26,7 @@ class ProdutoResponse(BaseModel):
     status: str
 
     class Config:
-        orm_mode = True  # permite retornar objetos SQLAlchemy direto'''
+        orm_mode = True  # permite retornar objetos SQLAlchemy direto
         
 class FornecedoresCreate(BaseModel):
     razao_social: str                     # nome obrigatório
@@ -33,6 +35,7 @@ class FornecedoresCreate(BaseModel):
     cnpj: str           # limite mínimo
     status: Optional[str] = "ativo"  # default "ativo" se não for informado
 
+
 class FornecedoresResponse(BaseModel):
     id: int                       # vem do banco
     razao_social: str                     # nome obrigatório
@@ -40,4 +43,66 @@ class FornecedoresResponse(BaseModel):
     email: str       # estoque inicial
     cnpj: str           # limite mínimo
     status: str
+
+class CategoriaCreate(BaseModel):
+    descricao: str                     
+
+class CategoriaResponse(BaseModel):
+    id: int                       
+    descricao: str                     
+    
+    
+from_attributes = True  # permite retornar objetos SQLAlchemy direto'
+
+class MovimentacoesCreate(BaseModel):
+    produto_id: int
+    quantidade: Decimal
+    data: str
+    tipo_mov_id: int
+    fornecedor_id: Optional[int] = None
+    tipo_pag_id: Optional[int] = None
+    preco_compra: Optional[Decimal] = None
+    preco_venda: Optional[Decimal] = None
+    
+class MovimentacoesResponse(BaseModel):
+    id: int
+    produto_id: int
+    quantidade: Decimal
+    data: str
+    tipo_mov_id: int
+    fornecedor_id: Optional[int] = None
+    tipo_pag_id: Optional[int] = None
+    preco_compra: Optional[Decimal] = None
+    preco_venda: Optional[Decimal] = None
+
+    class Config:
+        orm_mode = True
 orm_mode = True  # permite retornar objetos SQLAlchemy direto'
+
+
+
+class TipoPagamentoCreate(BaseModel):
+    nome: str
+    status: Optional[str] = "ativo"
+
+
+class TipoPagamentoResponse(BaseModel):
+    id: int
+    nome: str
+    status: str
+
+    class Config:
+        orm_mode = True  # permite retornar objetos SQLAlchemy direto
+
+
+class TipoMovimentacaoCreateSchema(BaseModel):
+    descricao: str
+
+
+# Schema de resposta (saída de dados)
+class TipoMovimentacaoResponseSchema(BaseModel):
+    id: int
+    descricao: str
+
+    class Config:
+        orm_mode = True

@@ -16,27 +16,18 @@ function verificarLogin() {
   }
 }
 
-document.getElementById("btn-sair").addEventListener("click", logout);
+document.addEventListener("DOMContentLoaded", () => {
+  const btnSair = document.getElementById("btn-sair");
 
-function logout() {
-  localStorage.removeItem("logado");
-  window.location.href = "../index.html";
-}
+  if (btnSair) {
+    btnSair.addEventListener("click", logout);
+  }
 
-//Funções para deixar as sessões de criar produtos páginaveis
-function mostrarSessao(sessao) {
-    // Esconde todas
-    document.querySelectorAll('.sessao').forEach(div => div.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    
-    // Mostra a escolhida
-    document.getElementById('sessao-' + sessao).classList.add('active');
-    
-    // Marca o botão como ativo
-    const btn = document.querySelector(`.tab-btn[onclick="mostrarSessao('${sessao}')"]`);
-    if (btn) btn.classList.add('active');
-}
-
+  function logout() {
+    localStorage.removeItem("logado");
+    window.location.href = "../index.html";
+  }
+});
 
 // Filtro
 document.getElementById("filtro").addEventListener("input", (e) => {
