@@ -8,15 +8,15 @@ A meta da aplicação é oferecer soluções de gestão de estoque, implementand
 **Estado atual:** A aplicação roda com chatbot incluso para pesquisa automatizada de informações, utilizando chamadas de APIs através do Front-end para cadastrar, editar e deletar produtos, movimentações e fornecedores
 
 **Equipe de desenvolvimento:**
-|Nome |Atuação |
-|----------------------|-------------|
-|[Kayke Gonçalves de Sousa](https://github.com/sousakai) |Backend |
-|[Ryahn Paulo Sobral Jesus](https://github.com/RyahnS7)|Backend |
+|Nome |Atuação | Contato |
+|----------------------|-------------|--------|
+|[Kayke Gonçalves de Sousa](https://github.com/sousakai) |Backend | [LinkedIn](https://www.linkedin.com/in/kayke-sousa)|
+|[Ryahn Paulo Sobral Jesus](https://github.com/RyahnS7)|Backend | [LinkedIn](https://www.linkedin.com/in/ryahn-paulo-664a08286)|
 |[Stenio Lucas da Silva Lima](https://github.com/Steniol) |Backend |
-|[Kauã Lourenço da Silva](https://github.com/KauaLS)|Frontend |
+|[Kauã Lourenço da Silva](https://github.com/KauaLS)|Frontend | [LinkedIn](https://www.linkedin.com/in/kauã-lourenço-6500302a8)
 |[Luiz Henrique](https://github.com/luizynhoo)| Frontend|
 |[Bruno Vinicius Chaga de Medeiros Costa](https://github.com/Brunera98)|Dados e BI |
-|[Nina Areal Cezario](https://github.com/ninaareal)| Dados e BI|
+|[Nina Areal Cezario](https://github.com/ninaareal)| Dados e BI| [LinkedIn](https://www.linkedin.com/in/nina-cezario-areal)
 ---
 
 ### Como rodar:
