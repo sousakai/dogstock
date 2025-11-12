@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends, Request, status
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from database import get_db  # função que retorna a sessão do SQLAlchemy
-from models import Produto   # modelo SQLAlchemy da tabela produtos
+from models import Produto, Movimentacoes  # modelo SQLAlchemy da tabela produtos
 from schemas import ProdutoCreate, ProdutoResponse  # Pydantic para validação de entrada e saída
 from logger import get_router_logger
 
@@ -238,6 +238,27 @@ def delete_produto(produto_id: int, request: Request, db: Session = Depends(get_
                 detail="Produto não encontrado."
             )
 
+        # 2. Verificar se existem movimentações associadas
+        movimentacoes_count = db.query(Movimentacoes).filter(
+            Movimentacoes.produto_id == produto_id
+        ).count()
+        
+        if movimentacoes_count > 0:
+            logger_registro.warning(
+                "Tentativa de deletar produto com movimentações",
+                extra={
+                    "ip": request.client.host,
+                    "status": 400,
+                    "method": "DELETE",
+                    "detail": f"Produto ID {produto_id} possui {movimentacoes_count} movimentação(ões) associada(s)."
+                }
+            )
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Não é possível excluir este produto pois ele possui {movimentacoes_count} movimentação(ões) associada(s)."
+            )
+
+        # 3. Deleta e confirma no banco
         # 2. Deleta e confirma no banco
         db.delete(db_item)
         db.commit()

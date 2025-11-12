@@ -1,5 +1,11 @@
 fastapi==0.117.1
-pydantic==2.11.9
-python-dotenv==1.1.1
+uvicorn==0.23.0
 SQLAlchemy==2.0.43
+pymysql==1.1.0
+python-dotenv==1.1.1
+cryptography
+aiofiles
+pydantic==2.11.9
 mysql-connector==2.2.9
+
+
