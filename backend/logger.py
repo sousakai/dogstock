@@ -12,31 +12,29 @@ os.makedirs(REGISTRO_DIR, exist_ok=True)
 
 def get_router_logger(router_name: str, registro: bool = False):
     """
-    Cria logger específico para cada router.
-    
-    Parâmetros:
-    - router_name: nome do router (nome do arquivo de log)
-    - registro: False para logs de leitura, True para logs de escrita
+    Cria um logger específico para cada router, garantindo que não compartilhe handlers
+    com outros loggers existentes, evitando logs na pasta errada.
     """
-    logger = logging.getLogger(router_name)
+    # Garante nome único por tipo de logger
+    logger_full_name = f"{router_name}_registro" if registro else f"{router_name}_consulta"
+    
+    logger = logging.getLogger(logger_full_name)
     logger.setLevel(logging.INFO)
 
-    if not logger.handlers:
-        # Escolhe a pasta correta
+    # Se já existir handlers, não adiciona de novo
+    if not logger.hasHandlers():
         folder = REGISTRO_DIR if registro else LOGS_DIR
-        os.makedirs(folder, exist_ok=True)  # garante que a pasta exista
+        os.makedirs(folder, exist_ok=True)
         file_path = os.path.join(folder, f"{router_name}.log")
 
-        # Handler com rotação diária
         handler = TimedRotatingFileHandler(
             filename=file_path,
-            when="midnight",  # cria novo arquivo à meia-noite
+            when="midnight",
             interval=1,
-            backupCount=7,    # mantém 7 arquivos antigos
+            backupCount=7,
             encoding="utf-8"
         )
 
-        # Formato do log
         formatter = logging.Formatter(
             '%(asctime)s - %(levelname)s - IP: %(ip)s - Método: %(method)s - Status: %(status)s - Mensagem: %(detail)s'
         )

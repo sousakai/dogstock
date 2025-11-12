@@ -218,7 +218,6 @@ def atualizar_produto(
 def delete_produto(produto_id: int, request: Request, db: Session = Depends(get_db)):
     """
     Deleta um produto existente pelo ID.
-    Não permite exclusão se houver movimentações associadas.
     """
     try:
         # 1. Busca o produto pelo ID
@@ -260,6 +259,7 @@ def delete_produto(produto_id: int, request: Request, db: Session = Depends(get_
             )
 
         # 3. Deleta e confirma no banco
+        # 2. Deleta e confirma no banco
         db.delete(db_item)
         db.commit()
 
@@ -276,10 +276,6 @@ def delete_produto(produto_id: int, request: Request, db: Session = Depends(get_
         # Retorno HTTP 204 No Content para exclusão bem-sucedida
         return
 
-    except HTTPException:
-        # Re-lançar exceções HTTP já tratadas
-        raise
-
     except SQLAlchemyError as e:
         db.rollback()
         logger_registro.error(
@@ -291,13 +287,9 @@ def delete_produto(produto_id: int, request: Request, db: Session = Depends(get_
                 "detail": f"Erro ao deletar Produto (SQLAlchemy): {str(e)}"
             }
         )
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
-            detail=f"Erro no banco de dados: {str(e)}"
-        )
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Erro no banco de dados: {str(e)}")
 
     except Exception as e:
-        db.rollback()
         logger_registro.error(
             "Erro inesperado ao deletar produto",
             extra={
@@ -307,7 +299,4 @@ def delete_produto(produto_id: int, request: Request, db: Session = Depends(get_
                 "detail": f"Erro inesperado ao deletar Produto: {str(e)}"
             }
         )
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
-            detail=f"Erro interno: {str(e)}"
-        )
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Erro interno: {str(e)}")
