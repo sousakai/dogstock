@@ -1,0 +1,15 @@
+Copyright (c) 2025
+Autores: Kayke Gonçalves de Sousa, Ryahn Paulo Sobral Jesus, Stenio Lucas da Silva Lima, Kauã Lourenço da Silva, Luiz Henrique, Bruno Vinicius Chaga de Medeiros Costa, Nina Areal Cezario
+
+All rights reserved.
+
+Permission is granted to use, copy, and modify this project 
+for personal, educational, or research purposes.
+
+Commercial use of this project, in whole or in part, is strictly prohibited 
+without explicit written permission from the authors.
+
+This software is provided "as is", without warranty of any kind, express or implied.  
+In no event shall the authors be liable for any claim, damages, or other liability,
+whether in an action of contract, tort, or otherwise, arising from, out of, 
+or in connection with the software or the use or other dealings in the software.
