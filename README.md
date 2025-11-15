@@ -12,10 +12,10 @@ A meta da aplicação é oferecer soluções de gestão de estoque, implementand
 |----------------------|-------------|--------|
 |[Kayke Gonçalves de Sousa](https://github.com/sousakai) |Backend | [LinkedIn](https://www.linkedin.com/in/kayke-sousa)|
 |[Ryahn Paulo Sobral Jesus](https://github.com/RyahnS7)|Backend | [LinkedIn](https://www.linkedin.com/in/ryahn-paulo-664a08286)|
-|[Stenio Lucas da Silva Lima](https://github.com/Steniol) |Backend |
+|[Stenio Lucas da Silva Lima](https://github.com/Steniol) |Backend | [LinkedIn](https://www.linkedin.com/in/stenio-lucas-2938ba2ab)
 |[Kauã Lourenço da Silva](https://github.com/KauaLS)|Frontend | [LinkedIn](https://www.linkedin.com/in/kauã-lourenço-6500302a8)
-|[Luiz Henrique](https://github.com/luizynhoo)| Frontend|
-|[Bruno Vinicius Chaga de Medeiros Costa](https://github.com/Brunera98)|Dados e BI |
+|[Luiz Henrique](https://github.com/luizynhoo)| Frontend| [LinkedIn](https://www.linkedin.com/in/luiz-henrique-silva-costa-8a683b222)
+|[Bruno Vinicius Chaga de Medeiros Costa](https://github.com/Brunera98)|Dados e BI | [LinkedIn](www.linkedin.com/in/bruno-costa-585472206)
 |[Nina Areal Cezario](https://github.com/ninaareal)| Dados e BI| [LinkedIn](https://www.linkedin.com/in/nina-cezario-areal)
 ---
 
